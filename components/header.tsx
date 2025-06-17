@@ -61,12 +61,7 @@ export function Header() {
         {/* Desktop Buttons */}
         <div className="hidden md:flex items-center space-x-3">
           {/* Mi Portal Button */}
-          <Button variant="outline" className="border-gray-300 text-gray-700 hover:bg-gray-50 font-medium" asChild>
-            <Link href="/portal" className="flex items-center">
-              <User className="h-4 w-4 mr-2" />
-              Mi Portal
-            </Link>
-          </Button>
+
 
           {/* Payment Button */}
           <Button className="bg-raicesRed hover:bg-red-600 text-white font-bold animate-pulse font-heading tracking-wider items-center">
@@ -110,14 +105,7 @@ export function Header() {
                 <Gift className="h-5 w-5 mr-2 text-raicesRed" />
                 Ofertas
               </Link>
-              <Link
-                href="/portal"
-                className="flex items-center text-gray-700 hover:text-raicesBlue font-medium py-2 px-4 transition-colors font-heading"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <User className="h-5 w-5 mr-2 text-raicesRed" />
-                Mi Portal
-              </Link>
+
 
               <Button
                 className="flex items-center bg-raicesRed hover:bg-red-600 text-white font-bold w-full justify-center animate-pulse font-heading tracking-wider"
