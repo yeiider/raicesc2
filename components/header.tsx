@@ -64,10 +64,13 @@ export function Header() {
 
 
           {/* Payment Button */}
-          <Button className="bg-raicesRed hover:bg-red-600 text-white font-bold animate-pulse font-heading tracking-wider items-center">
-            <CreditCard className="h-4 w-4 mr-2" />
-            PAGAR AQUÍ
-          </Button>
+          <Link href="/pagos">
+            <Button
+                className="bg-raicesRed hover:bg-red-600 text-white font-bold animate-pulse font-heading tracking-wider items-center">
+              <CreditCard className="h-4 w-4 mr-2"/>
+              PAGAR AQUÍ
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile Navigation */}
