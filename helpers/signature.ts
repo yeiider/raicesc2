@@ -6,7 +6,7 @@ interface SignatureParams {
 }
 
 export function generateSignature({ reference, amount}: SignatureParams): string {
-    const stringToSign = `${reference}${amount}COP${process.env.NEXT_PUBLIC_WOMPI_PUBLIC_KEY}`
+    const stringToSign = `${reference}${amount}COP${process.env.NEXT_PUBLIC_WOMPI_INTEGRITY}`
     console.log(stringToSign,reference,amount)
     return SHA256(stringToSign).toString()
 }
