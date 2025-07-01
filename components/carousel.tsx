@@ -6,25 +6,21 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const carouselImages = [
   {
-    src: "/interconnected-roots-network.png",
+    src: "/images/CARRUSEL/mesa1.png",
     alt: "Internet de alta velocidad",
   },
   {
-    src: "/ancestral-hd-tv.png",
+    src: "/images/CARRUSEL/mesa2.png",
     alt: "Televisión HD",
   },
   {
-    src: "/connected-roots.png",
+    src: "/images/CARRUSEL/mesa3.png",
     alt: "Planes combinados",
   },
   {
-    src: "/raices-247-support.png",
+    src: "/images/CARRUSEL/mesa4.png",
     alt: "Soporte técnico 24/7",
-  },
-  {
-    src: "/raices-special-offers.png",
-    alt: "Promociones especiales",
-  },
+  }
 ]
 
 export function Carousel() {
