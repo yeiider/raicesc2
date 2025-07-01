@@ -5,7 +5,7 @@
  */
 export function getWhatsAppLink(message = ""): string {
   // Número de WhatsApp en formato internacional sin el "+"
-  const phoneNumber = "573165259832"
+  const phoneNumber = "573148586751"
 
   // URL de WhatsApp con el número y mensaje
   return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
