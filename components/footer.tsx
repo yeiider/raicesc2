@@ -14,7 +14,7 @@ export function Footer() {
       <div className="container mx-auto px-4 relative z-10">
         {/* Logo en blanco centrado más pequeño */}
         <div className="flex justify-center mb-8">
-          <Image src="/images/logo.png" alt="RAICES Logo" width={150} height={60} className="h-12 w-auto" />
+          <Image src="/raices-blanco.png" alt="RAICES Logo" width={150} height={60} className="h-12 w-auto" />
         </div>
 
         {/* Información de contacto y enlaces - Diseño simplificado y más compacto */}
