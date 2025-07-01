@@ -60,7 +60,6 @@ export function Carousel() {
             className="w-full h-full transition-transform duration-700 ease-out"
             style={{
               transform: `translateX(-${currentIndex * 100}%)`,
-              width: `${carouselImages.length * 100}%`,
               display: "flex",
             }}
           >
@@ -74,18 +73,7 @@ export function Carousel() {
                   className="object-cover transform transition-transform duration-700 hover:scale-105"
                   priority={index === 0}
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex items-center z-20">
-                  <div className="container mx-auto px-8">
-                    <div className="max-w-md transform transition-all duration-500 translate-y-0 opacity-100">
-                      <h2 className="text-white text-2xl md:text-3xl lg:text-4xl font-bold mb-4 drop-shadow-lg font-heading">
-                        {image.alt}
-                      </h2>
-                      <p className="text-white text-base md:text-lg max-w-md drop-shadow-lg">
-                        Descubre la mejor experiencia en conectividad con RAICES
-                      </p>
-                    </div>
-                  </div>
-                </div>
+
               </div>
             ))}
           </div>
