@@ -7,7 +7,7 @@ export function WhatsAppButton() {
   const [isAnimating, setIsAnimating] = useState(false)
 
   // Número de WhatsApp y mensaje predefinido
-  const phoneNumber = "573148586751" // Formato internacional sin el "+"
+  const phoneNumber = "573147347051" // Formato internacional sin el "+"
   const message = "Hola, estoy interesado en los servicios de RAICES. ¿Podrían brindarme más información?"
 
   // URL de WhatsApp con el número y mensaje
