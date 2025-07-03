@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF‑8" />
+    <meta name="viewport" content="width=device‑width, initial‑scale=1.0" />
+    <title>Registro Raíces</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #fff;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .form-container {
+            background: #fafafa;
+            border: 4px solid #e0007d;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #e0007d;
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            color: #333;
+            margin-bottom: .3rem;
+            display: block;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 0.65rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        button {
+            width: 100%;
+            padding: .75rem;
+            background: #00d858;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background .3s;
+        }
+
+        button:hover {
+            background: #00b144;
+        }
+
+        .overlay,
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+
+        .overlay {
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 98;
+        }
+
+        .popup {
+            z-index: 99;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup>div {
+            background: #fff;
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 300px;
+            width: 90%;
+        }
+
+        .popup.success div {
+            border-left: 6px solid #00d858;
+        }
+
+        .popup.error div {
+            border-left: 6px solid #e0007d;
+        }
+
+        .popup h3 {
+            margin: 0 0 .5rem;
+            color: inherit;
+        }
+
+        .popup button {
+            margin-top: 1rem;
+            background: #777;
+            color: #fff;
+        }
+
+        .popup button:hover {
+            background: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Registro Raíces</h2>
+        <form id="form">
+            <label for="plan">Plan</label>
+            <select id="plan" required>
+                <option value="" disabled selected>Selecciona un plan</option>
+                <option>Basico para prueba</option>
+                <option>Recomendado</option>
+                <option>Avanzado</option>
+                <option>Premium</option>
+            </select>
+            <!-- Nombre completo -->
+            <label for="primerNombre">Primer nombre</label>
+            <input id="primerNombre" type="text" required placeholder="Ej: Laura" />
+
+            <label for="segundoNombre">Segundo nombre (opcional)</label>
+            <input id="segundoNombre" type="text" placeholder="Ej: María" />
+
+            <label for="primerApellido">Primer apellido</label>
+            <input id="primerApellido" type="text" required placeholder="Ej: Gómez" />
+
+            <label for="segundoApellido">Segundo apellido (opcional)</label>
+            <input id="segundoApellido" type="text" placeholder="Ej: Pérez" />
+
+            <label for="cedula">Cédula</label>
+            <input id="cedula" type="text" required placeholder="Ej: 1032456789" />
+
+            <label for="telefono">Teléfono</label>
+            <input id="telefono" type="tel" required placeholder="Ej: 3201234567" />
+
+            <label for="correo">Correo</label>
+            <input id="correo" type="email" required placeholder="Ej: correo@email.com" />
+
+            <label for="ciudad">Ciudad</label>
+            <input id="ciudad" type="text" required placeholder="Ej: Medellín" />
+
+            <!-- Dirección -->
+            <label for="tipoVia">Tipo de vía</label>
+            <select id="tipoVia" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option>Carrera</option>
+                <option>Calle</option>
+                <option>Avenida</option>
+                <option>No aplica</option>
+            </select>
+
+            <label for="numeroVia">Número o detalle de vía</label>
+            <input id="numeroVia" type="text" required placeholder="Ej: 121" />
+
+            <label for="tipoZona">Tipo de zona</label>
+            <select id="tipoZona" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option>Barrio</option>
+                <option>Vereda</option>
+                <option>Urbanización</option>
+                <option>No aplica</option>
+            </select>
+
+            <label for="nombreZona">Nombre de la zona</label>
+            <input id="nombreZona" type="text" required placeholder="Ej: La Esperanza" />
+
+            <label for="tipoVivienda">Tipo de vivienda</label>
+            <select id="tipoVivienda" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option>Casa</option>
+                <option>Apto</option>
+                <option>Local</option>
+            </select>
+
+            <label for="numeroVivienda">Número de vivienda</label>
+            <input id="numeroVivienda" type="text" required placeholder="Ej: 403 o 102" />
+
+            <label for="detalleDireccion">Detalle (opcional)</label>
+            <input id="detalleDireccion" type="text" placeholder="Ej: Piso 2, Entrada B" />
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <!-- Popups -->
+    <div class="overlay" id="overlay" ></div>
+    <div class="popup success" id="successPopup" style="display: none;">
+        <div>
+            <h3>✅ ¡Enviado!</h3>
+            <p>Gracias por registrarte.</p>
+            <button onclick="closePopup()">Cerrar</button>
+        </div>
+    </div>
+    <div class="popup error" id="errorPopup" style="display: none;">
+        <div>
+            <h3>❌ Error</h3>
+            <p>No se pudo enviar. Intenta de nuevo.</p>
+            <button onclick="closePopup()">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const form = document.getElementById('form');
+          const overlay = document.getElementById('overlay');
+          const success = document.getElementById('successPopup');
+          const error = document.getElementById('errorPopup');
+      
+          function showPopup(popup) {
+            overlay.style.display = 'block';
+            popup.style.display = 'flex';
+          }
+      
+          function closePopup() {
+            overlay.style.display = 'none';
+            success.style.display = 'none';
+            error.style.display = 'none';
+          }
+      
+          document.querySelectorAll('.popup button').forEach(btn =>
+            btn.addEventListener('click', closePopup)
+          );
+      
+          form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+      
+            try {
+              const nombreCompleto = [
+                document.getElementById('primerNombre').value.trim(),
+                document.getElementById('segundoNombre').value.trim(),
+                document.getElementById('primerApellido').value.trim(),
+                document.getElementById('segundoApellido').value.trim()
+              ].filter(Boolean).join(' ');
+      
+              const direccionPartes = [
+                document.getElementById('tipoVia').value !== "No aplica"
+                  ? document.getElementById('tipoVia').value + ' ' + document.getElementById('numeroVia').value.trim()
+                  : '',
+                document.getElementById('tipoZona').value !== "No aplica"
+                  ? document.getElementById('tipoZona').value + ' ' + document.getElementById('nombreZona').value.trim()
+                  : '',
+                document.getElementById('tipoVivienda').value + ' ' + document.getElementById('numeroVivienda').value.trim(),
+                document.getElementById('detalleDireccion').value.trim()
+              ];
+      
+              const direccion = direccionPartes.filter(Boolean).join(' ');
+      
+              const data = {
+                plan: document.getElementById('plan').value,
+                nombre: nombreCompleto,
+                cedula: document.getElementById('cedula').value,
+                telefono: document.getElementById('telefono').value,
+                correo: document.getElementById('correo').value,
+                ciudad: document.getElementById('ciudad').value,
+                direccion: direccion
+              };
+      
+              const response = await fetch('https://primary-staging-58a3.up.railway.app/webhook/58adc25d-aec7-45f5-946c-941800a3b6c1', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+              });
+      
+              if (response.ok) {
+                form.reset();
+                showPopup(success);
+              } else {
+                showPopup(error);
+              }
+      
+            } catch (err) {
+              console.error('Error al enviar:', err);
+              showPopup(error);
+            }
+          });
+        });
+      </script>
+      
+      
+</body>
+
+</html>
