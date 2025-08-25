@@ -21,7 +21,8 @@ export default function Home() {
       <Testimonials />
       <Locations />
       <Footer />
-      <PromoPopup />
+
+        {/* <PromoPopup /> */}
     </main>
   )
 }

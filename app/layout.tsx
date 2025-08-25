@@ -47,7 +47,7 @@ export default function RootLayout({
         >
           {children}
           <WhatsAppButton />
-          <FloatingTrialButton />
+            { /*<FloatingTrialButton />*/ }
         </ThemeProvider>
       </body>
     </html>
