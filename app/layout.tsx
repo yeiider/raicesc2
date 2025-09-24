@@ -24,7 +24,8 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "Global Raíces S.A.S - Conectividad sin Límites",
-  description: "Servicios de internet, radio, televisión y videovigilancia en el suroccidente colombiano, conectando más de 13,000 hogares con tecnología de punta."
+  description: "Servicios de internet, radio, televisión y videovigilancia en el suroccidente colombiano, conectando más de 13,000 hogares con tecnología de punta.",
+    generator: 'v0.app'
 }
 
 export default function RootLayout({
