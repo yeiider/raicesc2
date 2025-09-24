@@ -224,4 +224,3 @@ export default function TransactionSummary({ transaction, isLoading, error }: Tr
         </div>
     )
 }
-

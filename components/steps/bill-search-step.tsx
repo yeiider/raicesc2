@@ -149,4 +149,3 @@ export default function BillSearchStep({ onSearch, isLoading }: BillSearchStepPr
         </div>
     )
 }
-

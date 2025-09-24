@@ -56,4 +56,3 @@ export default function CheckoutStepper({ currentStep }: CheckoutStepperProps) {
         </div>
     )
 }
-
