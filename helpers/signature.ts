@@ -1,11 +1,26 @@
-import SHA256 from "crypto-js/sha256"
-
 interface SignatureParams {
-    reference: string
-    amount: number
+  reference: string
+  amount: number
 }
 
-export function generateSignature({ reference, amount}: SignatureParams): string {
-    const stringToSign = `${reference}${amount}COP${process.env.NEXT_PUBLIC_WOMPI_INTEGRITY}`
-    return SHA256(stringToSign).toString()
+export async function generateSignature({ reference, amount }: SignatureParams): Promise<string> {
+  try {
+    const response = await fetch("/api/wompi/signature", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ reference, amount }),
+    })
+
+    if (!response.ok) {
+      throw new Error("Failed to generate signature")
+    }
+
+    const { signature } = await response.json()
+    return signature
+  } catch (error) {
+    console.error("Error generating signature:", error)
+    throw new Error("Failed to generate payment signature")
+  }
 }
