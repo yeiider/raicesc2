@@ -43,8 +43,8 @@ export default function CheckoutFlow() {
 
         try {
             // Verificar si la ciudad es Jamundí para usar una API diferente
-            if (ciudad === "jamundi") {
-                await handleJamundiBillSearch(cedula)
+            if (ciudad === "jamundi" || ciudad === "cali") {
+                await handleJamundiBillSearch(cedula, ciudad)
             } else {
                 await handleRegularBillSearch(cedula, ciudad)
             }
@@ -64,10 +64,10 @@ export default function CheckoutFlow() {
     }
 
     // Función para manejar la búsqueda de facturas en Jamundí
-    const handleJamundiBillSearch = async (cedula: string) => {
+    const handleJamundiBillSearch = async (cedula: string, ciudad: string) => {
 
         // Simulamos la llamada a la API de Jamundí (reemplazar con la API real)
-        const jamundiResponse = await fetch(`/api/clientes?cedula=${cedula}&ciudad=jamundi`, {
+        const jamundiResponse = await fetch(`/api/clientes?cedula=${cedula}&ciudad=${ciudad}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
