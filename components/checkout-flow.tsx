@@ -43,7 +43,7 @@ export default function CheckoutFlow() {
 
         try {
             // Verificar si la ciudad es Jamundí para usar una API diferente
-            if (ciudad === "jamundi" || ciudad === "cali") {
+            if (ciudad === "jamundi" || ciudad === "caasai") {
                 await handleJamundiBillSearch(cedula, ciudad)
             } else {
                 await handleRegularBillSearch(cedula, ciudad)

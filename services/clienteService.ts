@@ -83,7 +83,7 @@ export class ClienteService {
             };
         }
 
-        if (ciudad.toLowerCase() === 'jamundi' || ciudad.toLowerCase()==='cali') {
+        if (ciudad.toLowerCase() === 'jamundi' || ciudad.toLowerCase()==='aa') {
             return await this.buscarJamundi(cedula);
         } else {
             return await this.buscarGeneral(cedula);
