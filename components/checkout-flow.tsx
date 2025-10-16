@@ -19,7 +19,8 @@ import {Bill} from "@/lib/types.ts";
 export default function CheckoutFlow() {
 
     const [currentStep, setCurrentStep] = useState(1)
-    const [bill, setBill] = useState<Bill | null>(null)
+    const [bills, setBills] = useState<Bill[]>([])
+    const [selectedBill, setSelectedBill] = useState<Bill | null>(null)
     const [isLoading, setIsLoading] = useState(false)
     const [isPaymentComplete, setIsPaymentComplete] = useState(false)
     const [transactionId, setTransactionId] = useState("")
@@ -86,7 +87,7 @@ export default function CheckoutFlow() {
         }
         const jamundiData = await jamundiResponse.json()
         // Verificar si hay una factura
-        if (!jamundiData || !jamundiData.invoice) {
+        if (!jamundiData || !Array.isArray(jamundiData.invoices)) {
             toast({
                 title: "Factura no encontrada",
                 description: "No se encontró ninguna factura pendiente para este cliente en Jamundí",
@@ -95,46 +96,55 @@ export default function CheckoutFlow() {
             return
         }
 
-        // Convertir los datos al formato Bill
-        const invoice = jamundiData.invoice
+        // Filtrar facturas no pagadas y con productos definidos y no vacíos
+        const filtered = jamundiData.invoices.filter((inv: any) => inv?.status === "unpaid" && Array.isArray(inv?.products) && inv.products.length > 0)
 
-        if (invoice.status !== "unpaid") {
+        if (filtered.length === 0) {
             toast({
-                title: "La factura ya ha sido pagada",
-                description: "La factura que intenta buscar ya ha sido pagada. Por favor, intente con otra factura.",
+                title: "Sin facturas válidas",
+                description: "No hay facturas pendientes con productos disponibles para este cliente.",
                 variant: "destructive",
             })
             return
         }
 
-        const billData: Bill = {
-            id: invoice.increment_id,
-            reference: `FAC-ISPGO-${invoice.increment_id}`,
-            clientName: invoice.customer_name,
-            dueDate: new Date(invoice.due_date).toLocaleDateString(),
-            amount: Number.parseFloat(invoice.total),
-            period: new Date(invoice.issue_date).toLocaleDateString("es-CO", {month: "long", year: "numeric"}),
-            status: invoice.status === "unpaid" ? "Pendiente" : invoice.status,
-            cedula: invoice.customer.identity_document,
-            email: invoice.customer.email_address,
-            telephone: invoice.customer.phone_number,
-            city: invoice.address.city,
-            address: invoice.address.address,
-            clientId: invoice.customer.id,
-            facturaId: Number.parseInt(invoice.increment_id),
-            subtotal: Number.parseFloat(invoice.subtotal),
-            tax: Number.parseFloat(invoice.tax),
-            discount: Number.parseFloat(invoice.discount),
-        }
+        // Mapear a nuestro tipo Bill
+        const mappedBills: Bill[] = filtered.map((invoice: any) => {
+            const billData: Bill = {
+                id: invoice.increment_id,
+                reference: `FAC-ISPGO-${invoice.increment_id}`,
+                clientName: invoice.customer_name,
+                dueDate: new Date(invoice.due_date).toLocaleDateString(),
+                amount: Number.parseFloat(invoice.total),
+                period: new Date(invoice.issue_date).toLocaleDateString("es-CO", { month: "long", year: "numeric" }),
+                status: "Pendiente",
+                cedula: invoice.customer?.identity_document,
+                email: invoice.customer?.email_address,
+                telephone: invoice.customer?.phone_number,
+                // La API nueva entrega address como string. Si es objeto, mantenemos compatibilidad.
+                city: typeof invoice.address === 'object' ? invoice.address?.city : undefined,
+                address: typeof invoice.address === 'object' ? invoice.address?.address : invoice.address,
+                clientId: invoice.customer?.id,
+                facturaId: Number.parseInt(invoice.increment_id),
+                subtotal: Number.parseFloat(invoice.subtotal),
+                tax: Number.parseFloat(invoice.tax),
+                discount: Number.parseFloat(invoice.discount),
+                products: invoice.products,
+            }
+            // Fallback por si no vienen products
+            if (!billData.products && invoice.product) {
+                billData.service = invoice.product
+            }
+            return billData
+        })
 
-        // Handle both single product and products array
-        if (invoice.products && invoice.products.length > 0) {
-            billData.products = invoice.products;
-        } else if (invoice.product) {
-            billData.service = invoice.product;
+        setBills(mappedBills)
+        // Si solo hay una factura, la seleccionamos por defecto
+        if (mappedBills.length === 1) {
+            setSelectedBill(mappedBills[0])
+        } else {
+            setSelectedBill(null)
         }
-
-        setBill(billData)
         setCurrentStep(2)
     }
 
@@ -216,7 +226,8 @@ export default function CheckoutFlow() {
             address: cliente.direccion,
         }
 
-        setBill(billData)
+        setBills([billData])
+        setSelectedBill(billData)
         setCurrentStep(2)
     }
 
@@ -259,13 +270,15 @@ export default function CheckoutFlow() {
                 facturaId: 224127,
             }
 
-            setBill(mockBill)
+            setBills([mockBill])
+            setSelectedBill(mockBill)
             setCurrentStep(2)
             setIsLoading(false)
         }, 1500)
     }
 
-    const handleProceedToPayment = () => {
+    const handleProceedToPayment = (bill: Bill) => {
+        setSelectedBill(bill)
         setCurrentStep(3)
     }
 
@@ -276,7 +289,8 @@ export default function CheckoutFlow() {
     }
 
     const handleRestart = () => {
-        setBill(null)
+        setBills([])
+        setSelectedBill(null)
         setIsPaymentComplete(false)
         setTransactionId("")
         setCurrentStep(1)
@@ -302,7 +316,7 @@ export default function CheckoutFlow() {
                             </motion.div>
                         )}
 
-                        {currentStep === 2 && bill && (
+                        {currentStep === 2 && bills.length > 0 && (
                             <motion.div
                                 key="step2"
                                 initial={{opacity: 0, x: 20}}
@@ -310,11 +324,11 @@ export default function CheckoutFlow() {
                                 exit={{opacity: 0, x: -20}}
                                 transition={{duration: 0.3}}
                             >
-                                <BillDetailsStep bill={bill} onProceed={handleProceedToPayment}/>
+                                <BillDetailsStep bills={bills} onProceed={handleProceedToPayment}/>
                             </motion.div>
                         )}
 
-                        {currentStep === 3 && bill && (
+                        {currentStep === 3 && selectedBill && (
                             <motion.div
                                 key="step3"
                                 initial={{opacity: 0, x: 20}}
@@ -322,11 +336,11 @@ export default function CheckoutFlow() {
                                 exit={{opacity: 0, x: -20}}
                                 transition={{duration: 0.3}}
                             >
-                                <PaymentStep bill={bill} onPaymentComplete={handlePaymentComplete}/>
+                                <PaymentStep bill={selectedBill} onPaymentComplete={handlePaymentComplete}/>
                             </motion.div>
                         )}
 
-                        {currentStep === 4 && bill && (
+                        {currentStep === 4 && selectedBill && (
                             <motion.div
                                 key="step4"
                                 initial={{opacity: 0, x: 20}}
@@ -334,7 +348,7 @@ export default function CheckoutFlow() {
                                 exit={{opacity: 0, x: -20}}
                                 transition={{duration: 0.3}}
                             >
-                                <SummaryStep bill={bill} transactionId={transactionId} onRestart={handleRestart}/>
+                                <SummaryStep bill={selectedBill} transactionId={transactionId} onRestart={handleRestart}/>
                             </motion.div>
                         )}
                     </AnimatePresence>

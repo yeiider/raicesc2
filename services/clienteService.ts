@@ -23,9 +23,19 @@ export class ClienteService {
                     }
                 }
             );
-            console.log(response.data);
+            // La API ahora puede devolver un array de facturas bajo "invoices"
+            const data = response.data;
+            let normalized = data;
+            if (data && Array.isArray(data.invoices)) {
+                // Filtrar solo facturas no pagadas y con productos definidos y no vacíos
+                const filtered = data.invoices.filter((inv: any) => {
+                    const products = inv?.products;
+                    return inv?.status === 'unpaid' && Array.isArray(products) && products.length > 0;
+                });
+                normalized = { invoices: filtered };
+            }
             return {
-                data: response.data,
+                data: normalized,
                 status: response.status
             };
         } catch (error) {
