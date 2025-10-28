@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Llamar a la API de ISPGo
-    const response = await fetch(`${ISPGO_API_BASE_URL}/api/v1/cotizaciones`, {
+    const response = await fetch(`${ISPGO_API_BASE_URL}/cotizaciones`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${ISPGO_API_TOKEN}`,
