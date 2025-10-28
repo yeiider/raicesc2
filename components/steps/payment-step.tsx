@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import type { Bill } from "@/lib/types"
 import { generateSignature } from "@/helpers/signature.ts"
+import { getWompiConfig } from "@/app/actions/wompi"
 
 // Definir el tipo para el widget de Wompi
 
@@ -43,6 +44,8 @@ export default function PaymentStep({ bill, onPaymentComplete }: PaymentStepProp
     const uniqueReference = `${bill.reference}-${Date.now()}`
 
     try {
+      const wompiConfig = await getWompiConfig()
+
       const signature = await generateSignature({ reference: uniqueReference, amount: amountInCents })
 
       if (window.WidgetCheckout) {
@@ -50,7 +53,7 @@ export default function PaymentStep({ bill, onPaymentComplete }: PaymentStepProp
           currency: "COP",
           amountInCents: amountInCents,
           reference: uniqueReference,
-          publicKey: process.env.NEXT_PUBLIC_WOMPI_PUBLIC_KEY,
+          publicKey: wompiConfig.publicKey,
           signature: {
             integrity: signature,
           },
