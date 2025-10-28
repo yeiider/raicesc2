@@ -43,6 +43,14 @@ export default function PaymentStep({ bill, onPaymentComplete }: PaymentStepProp
     const uniqueReference = `${bill.reference}-${Date.now()}`
 
     try {
+      // Fetch Wompi config from API route
+      const configResponse = await fetch("/api/wompi/config")
+      const wompiConfig = await configResponse.json()
+
+      if (!wompiConfig.publicKey) {
+        throw new Error("Failed to get Wompi configuration")
+      }
+
       const signature = await generateSignature({ reference: uniqueReference, amount: amountInCents })
 
       if (window.WidgetCheckout) {
@@ -50,7 +58,7 @@ export default function PaymentStep({ bill, onPaymentComplete }: PaymentStepProp
           currency: "COP",
           amountInCents: amountInCents,
           reference: uniqueReference,
-          publicKey: process.env.NEXT_PUBLIC_WOMPI_PUBLIC_KEY,
+          publicKey: wompiConfig.publicKey,
           signature: {
             integrity: signature,
           },
