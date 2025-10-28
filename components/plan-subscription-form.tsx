@@ -47,23 +47,23 @@ export function PlanSubscriptionForm({ isOpen, onClose, selectedPlan }: PlanSubs
     setError("")
 
     try {
-      // Send to webhook
-      const response = await fetch(
-        "https://primary-staging-58a3.up.railway.app/webhook/58adc25d-aec7-45f5-946c-941800a3b6c1",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            ...formData,
-            plan: selectedPlan.name,
-            velocidad: selectedPlan.speed,
-            precio: selectedPlan.price,
-            tipo: "contratacion_plan_especial",
-          }),
+      const response = await fetch("/api/cotizaciones", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      )
+        body: JSON.stringify({
+          nombre: formData.nombre,
+          apellido: formData.apellido,
+          email: formData.correo,
+          telefono: formData.telefono,
+          direccion: formData.direccion,
+          ciudad: formData.ciudad,
+          plan: `${selectedPlan.name} - ${selectedPlan.speed} - ${selectedPlan.price}`,
+        }),
+      })
+
+      const data = await response.json()
 
       if (response.ok) {
         setIsSubmitted(true)
@@ -81,7 +81,11 @@ export function PlanSubscriptionForm({ isOpen, onClose, selectedPlan }: PlanSubs
           onClose()
         }, 3000)
       } else {
-        throw new Error("Error al enviar el formulario")
+        if (response.status === 422 && data.status === "duplicate") {
+          setError("Ya existe una solicitud con este número de teléfono. Nos pondremos en contacto contigo pronto.")
+        } else {
+          setError(data.message || "Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.")
+        }
       }
     } catch (err) {
       setError("Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.")
