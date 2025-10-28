@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 
 export async function GET() {
   try {
-    const publicKey = process.env.NEXT_PUBLIC_WOMPI_PUBLIC_KEY
+    const publicKey = process.env.WOMPI_PUBLIC_KEY
 
     if (!publicKey) {
       return NextResponse.json({ error: "Wompi configuration not found" }, { status: 500 })
