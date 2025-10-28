@@ -42,8 +42,12 @@ export async function POST(request: NextRequest) {
       notas: body.notas || null,
     }
 
+    const apiUrl = `${ISPGO_API_BASE_URL}/cotizaciones`
+    console.log("[v0] ISPGo API Base URL:", ISPGO_API_BASE_URL)
+    console.log("[v0] Full API URL:", apiUrl)
+
     // Llamar a la API de ISPGo
-    const response = await fetch(`${ISPGO_API_BASE_URL}/cotizaciones`, {
+    const response = await fetch(apiUrl, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${ISPGO_API_TOKEN}`,
@@ -56,6 +60,12 @@ export async function POST(request: NextRequest) {
     const data = await response.json()
 
     if (!response.ok) {
+      console.log("[v0] ISPGo API Error Response:", {
+        status: response.status,
+        statusText: response.statusText,
+        data,
+      })
+
       // Manejar errores de la API de ISPGo
       if (response.status === 422) {
         return NextResponse.json(
