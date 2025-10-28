@@ -7,7 +7,6 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import type { Bill } from "@/lib/types"
 import { generateSignature } from "@/helpers/signature.ts"
-import { getWompiConfig } from "@/app/actions/wompi"
 
 // Definir el tipo para el widget de Wompi
 
@@ -44,7 +43,13 @@ export default function PaymentStep({ bill, onPaymentComplete }: PaymentStepProp
     const uniqueReference = `${bill.reference}-${Date.now()}`
 
     try {
-      const wompiConfig = await getWompiConfig()
+      // Fetch Wompi config from API route
+      const configResponse = await fetch("/api/wompi/config")
+      const wompiConfig = await configResponse.json()
+
+      if (!wompiConfig.publicKey) {
+        throw new Error("Failed to get Wompi configuration")
+      }
 
       const signature = await generateSignature({ reference: uniqueReference, amount: amountInCents })
 
