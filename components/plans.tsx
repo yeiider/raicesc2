@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Check, Zap, Sparkles, TrendingUp } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { getWhatsAppLink } from "@/utils/whatsapp-link"
+import { PlanSubscriptionForm } from "@/components/plan-subscription-form"
 
 const plans = [
   {
@@ -55,6 +55,21 @@ const plans = [
 
 export function Plans() {
   const [hoveredPlan, setHoveredPlan] = useState<number | null>(null)
+  const [isFormOpen, setIsFormOpen] = useState(false)
+  const [selectedPlanData, setSelectedPlanData] = useState<{
+    name: string
+    speed: string
+    price: string
+  } | null>(null)
+
+  const handleContractPlan = (plan: (typeof plans)[0]) => {
+    setSelectedPlanData({
+      name: plan.name,
+      speed: `${plan.speed} MBPS`,
+      price: `$${plan.price.toLocaleString()}`,
+    })
+    setIsFormOpen(true)
+  }
 
   return (
     <section className="py-16 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden" id="planes">
@@ -190,14 +205,7 @@ export function Plans() {
                   )}
 
                   <button
-                    onClick={() => {
-                      window.open(
-                        getWhatsAppLink(
-                          `¡Hola! Quiero aprovechar la oferta única del ${plan.name} de ${plan.speed} MBPS por $${plan.price.toLocaleString()}. ¿Cómo puedo contratarlo?`,
-                        ),
-                        "_blank",
-                      )
-                    }}
+                    onClick={() => handleContractPlan(plan)}
                     className={`w-full py-4 px-4 rounded-xl font-bold text-white transition-all duration-300 text-base shadow-lg hover:shadow-xl transform hover:-translate-y-1 ${
                       plan.popular
                         ? "bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700"
@@ -221,6 +229,14 @@ export function Plans() {
           </p>
         </div>
       </div>
+
+      {selectedPlanData && (
+        <PlanSubscriptionForm
+          isOpen={isFormOpen}
+          onClose={() => setIsFormOpen(false)}
+          selectedPlan={selectedPlanData}
+        />
+      )}
     </section>
   )
 }
