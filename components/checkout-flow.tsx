@@ -1,6 +1,6 @@
 "use client"
 
-import {useState,useEffect} from "react"
+import {useState, useEffect} from "react"
 import {motion, AnimatePresence} from "framer-motion"
 import {CheckCircle} from "lucide-react"
 import BillSearchStep from "./steps/bill-search-step"
@@ -43,12 +43,7 @@ export default function CheckoutFlow() {
         setIsLoading(true)
 
         try {
-            // Verificar si la ciudad es Jamundí para usar una API diferente
-            if (ciudad === "jamundi" || ciudad === "cali") {
-                await handleJamundiBillSearch(cedula, ciudad)
-            } else {
-                await handleRegularBillSearch(cedula, ciudad)
-            }
+            await handleJamundiBillSearch(cedula, ciudad)
         } catch (error) {
             console.error("Error al buscar factura:", error)
             toast({
@@ -116,7 +111,7 @@ export default function CheckoutFlow() {
                 clientName: invoice.customer_name,
                 dueDate: new Date(invoice.due_date).toLocaleDateString(),
                 amount: Number.parseFloat(invoice.total),
-                period: new Date(invoice.issue_date).toLocaleDateString("es-CO", { month: "long", year: "numeric" }),
+                period: new Date(invoice.issue_date).toLocaleDateString("es-CO", {month: "long", year: "numeric"}),
                 status: "Pendiente",
                 cedula: invoice.customer?.identity_document,
                 email: invoice.customer?.email_address,
@@ -348,7 +343,8 @@ export default function CheckoutFlow() {
                                 exit={{opacity: 0, x: -20}}
                                 transition={{duration: 0.3}}
                             >
-                                <SummaryStep bill={selectedBill} transactionId={transactionId} onRestart={handleRestart}/>
+                                <SummaryStep bill={selectedBill} transactionId={transactionId}
+                                             onRestart={handleRestart}/>
                             </motion.div>
                         )}
                     </AnimatePresence>
