@@ -32,7 +32,7 @@ export class ClienteService {
                     const products = inv?.products;
                     return inv?.status === 'unpaid' && Array.isArray(products) && products.length > 0;
                 });
-                normalized = { invoices: filtered };
+                normalized = {invoices: filtered};
             }
             return {
                 data: normalized,
@@ -92,11 +92,6 @@ export class ClienteService {
                 status: 400
             };
         }
-
-        if (ciudad.toLowerCase() === 'jamundi' || ciudad.toLowerCase()==='cali') {
-            return await this.buscarJamundi(cedula);
-        } else {
-            return await this.buscarGeneral(cedula);
-        }
+        return await this.buscarJamundi(cedula);
     }
 }
