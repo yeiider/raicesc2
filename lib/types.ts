@@ -136,6 +136,7 @@ export interface JamundiInvoiceResponse {
         status: string
         issue_date: string
         due_date: string
+        onepay_payment_link?: string
         customer: {
             id: number
             first_name: string
