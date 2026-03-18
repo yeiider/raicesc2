@@ -125,6 +125,7 @@ export default function CheckoutFlow() {
                 tax: Number.parseFloat(invoice.tax),
                 discount: Number.parseFloat(invoice.discount),
                 products: invoice.products,
+                onepay_payment_link: invoice.onepay_payment_link,
             }
             // Fallback por si no vienen products
             if (!billData.products && invoice.product) {
