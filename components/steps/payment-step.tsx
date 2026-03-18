@@ -1,15 +1,22 @@
 "use client"
 
 import { useState } from "react"
-import { CreditCard } from "lucide-react"
+import { CreditCard, ExternalLink, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Label } from "@/components/ui/label"
 import type { Bill } from "@/lib/types"
 import { generateSignature } from "@/helpers/signature.ts"
+import {
+  getActivePaymentMethods,
+  getOnepayUrl,
+  type PaymentMethod,
+  type PaymentMethodId,
+} from "@/lib/payment-config"
 
 // Definir el tipo para el widget de Wompi
-
 declare global {
   interface Window {
     WidgetCheckout: any
@@ -23,6 +30,10 @@ interface PaymentStepProps {
 
 export default function PaymentStep({ bill, onPaymentComplete }: PaymentStepProps) {
   const [isProcessing, setIsProcessing] = useState(false)
+  const activePaymentMethods = getActivePaymentMethods()
+  const [selectedMethod, setSelectedMethod] = useState<PaymentMethodId>(
+    activePaymentMethods.length > 0 ? activePaymentMethods[0].id : "onepay"
+  )
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat("es-CO", {
@@ -30,6 +41,15 @@ export default function PaymentStep({ bill, onPaymentComplete }: PaymentStepProp
       currency: "COP",
       minimumFractionDigits: 0,
     }).format(amount)
+  }
+
+  // Función para iniciar el pago con OnePay (redirección externa)
+  const initiateOnepayCheckout = () => {
+    setIsProcessing(true)
+    // El increment_id es el id de la factura
+    const onepayUrl = getOnepayUrl(bill.id)
+    // Redirigir al usuario a la página de OnePay
+    window.location.href = onepayUrl
   }
 
   // Función para iniciar el widget de Wompi
@@ -88,14 +108,91 @@ export default function PaymentStep({ bill, onPaymentComplete }: PaymentStepProp
     }
   }
 
+  // Función principal de pago que decide qué método usar
+  const handlePayment = () => {
+    if (selectedMethod === "onepay") {
+      initiateOnepayCheckout()
+    } else if (selectedMethod === "wompi") {
+      initiateWompiCheckout()
+    }
+  }
+
+  // Renderizar el selector de método de pago si hay más de uno activo
+  const renderPaymentMethodSelector = () => {
+    if (activePaymentMethods.length <= 1) return null
+
+    return (
+      <div className="mb-6">
+        <h4 className="font-medium text-gray-700 mb-3">Selecciona tu método de pago:</h4>
+        <RadioGroup
+          value={selectedMethod}
+          onValueChange={(value) => setSelectedMethod(value as PaymentMethodId)}
+          className="space-y-3"
+        >
+          {activePaymentMethods.map((method) => (
+            <div
+              key={method.id}
+              className={`flex items-center space-x-3 p-4 border rounded-lg cursor-pointer transition-all ${
+                selectedMethod === method.id
+                  ? "border-[#2d4594] bg-[#f0f4ff]"
+                  : "border-gray-200 hover:border-gray-300"
+              }`}
+              onClick={() => setSelectedMethod(method.id)}
+            >
+              <RadioGroupItem value={method.id} id={method.id} />
+              <Label htmlFor={method.id} className="flex items-center gap-3 cursor-pointer flex-1">
+                {method.logo && (
+                  <img
+                    src={method.logo}
+                    alt={`${method.name} Logo`}
+                    className="h-8 object-contain"
+                  />
+                )}
+                <div>
+                  <p className="font-medium">{method.name}</p>
+                  <p className="text-sm text-gray-500">{method.description}</p>
+                </div>
+              </Label>
+              {selectedMethod === method.id && (
+                <Check className="h-5 w-5 text-[#2d4594]" />
+              )}
+            </div>
+          ))}
+        </RadioGroup>
+      </div>
+    )
+  }
+
+  // Obtener la información del método seleccionado
+  const getSelectedMethodInfo = (): PaymentMethod | undefined => {
+    return activePaymentMethods.find((m) => m.id === selectedMethod)
+  }
+
+  const selectedMethodInfo = getSelectedMethodInfo()
+
+  // Si no hay métodos de pago activos
+  if (activePaymentMethods.length === 0) {
+    return (
+      <div className="text-center py-8">
+        <div className="bg-yellow-50 p-4 rounded-lg">
+          <p className="text-yellow-700">
+            No hay métodos de pago disponibles en este momento. Por favor, contacte al administrador.
+          </p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <>
-      {/* Cargar el script de Wompi */}
-
       <div>
         <div className="text-center mb-6">
           <h2 className="text-xl font-semibold text-gray-800">Realizar Pago</h2>
-          <p className="text-gray-600 mt-1">Procede al pago seguro con Wompi</p>
+          <p className="text-gray-600 mt-1">
+            {activePaymentMethods.length > 1
+              ? "Selecciona tu método de pago preferido"
+              : `Procede al pago seguro con ${selectedMethodInfo?.name || "el método disponible"}`}
+          </p>
         </div>
 
         <div className="bg-[#f0f4ff] p-4 rounded-lg mb-6">
@@ -111,6 +208,8 @@ export default function PaymentStep({ bill, onPaymentComplete }: PaymentStepProp
           </div>
         </div>
 
+        {renderPaymentMethodSelector()}
+
         <Card>
           <CardContent className="p-6">
             <div className="text-center py-4">
@@ -119,9 +218,13 @@ export default function PaymentStep({ bill, onPaymentComplete }: PaymentStepProp
                   <CreditCard className="h-8 w-8 text-[#2d4594]" />
                 </div>
               </div>
-              <h3 className="font-semibold text-lg mb-2">Pago Seguro con Wompi</h3>
+              <h3 className="font-semibold text-lg mb-2">
+                Pago Seguro con {selectedMethodInfo?.name || "Pasarela de Pagos"}
+              </h3>
               <p className="text-gray-600 mb-6">
-                Serás redirigido a la plataforma de pago seguro de Wompi para completar tu transacción.
+                {selectedMethod === "onepay"
+                  ? "Serás redirigido a la plataforma de pago seguro de OnePay para completar tu transacción."
+                  : "Serás redirigido a la plataforma de pago seguro de Wompi para completar tu transacción."}
               </p>
 
               <Separator className="my-4" />
@@ -129,11 +232,24 @@ export default function PaymentStep({ bill, onPaymentComplete }: PaymentStepProp
               <div className="flex items-center justify-between text-sm mb-6">
                 <span className="text-gray-600">Procesado por</span>
                 <div className="font-semibold flex items-center">
-                  <img src={"/Wompi_LogoPrincipal.png"} alt="Wompi Logo" loading="eager" className="ml-2 h-10" />
+                  {selectedMethodInfo?.logo ? (
+                    <img
+                      src={selectedMethodInfo.logo}
+                      alt={`${selectedMethodInfo.name} Logo`}
+                      loading="eager"
+                      className="ml-2 h-10"
+                    />
+                  ) : (
+                    <span className="ml-2">{selectedMethodInfo?.name}</span>
+                  )}
                 </div>
               </div>
 
-              <Button onClick={initiateWompiCheckout} className="w-full bg-[#2d4594] hover:bg-[#1e3276]">
+              <Button
+                onClick={handlePayment}
+                className="w-full bg-[#2d4594] hover:bg-[#1e3276]"
+                disabled={isProcessing}
+              >
                 {isProcessing ? (
                   <span className="flex items-center">
                     <svg
@@ -159,7 +275,10 @@ export default function PaymentStep({ bill, onPaymentComplete }: PaymentStepProp
                     Iniciando Pago...
                   </span>
                 ) : (
-                  "Pagar Ahora"
+                  <span className="flex items-center justify-center gap-2">
+                    Pagar Ahora
+                    {selectedMethod === "onepay" && <ExternalLink className="h-4 w-4" />}
+                  </span>
                 )}
               </Button>
             </div>
