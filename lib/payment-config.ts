@@ -39,11 +39,3 @@ export const isPaymentMethodActive = (methodId: PaymentMethodId): boolean => {
   const method = PAYMENT_METHODS.find((m) => m.id === methodId)
   return method?.enabled ?? false
 }
-
-// URL base de OnePay
-export const ONEPAY_BASE_URL = "https://pagos.onepay.la/global-raices"
-
-// Generar URL de OnePay con la referencia
-export const getOnepayUrl = (incrementId: string): string => {
-  return `${ONEPAY_BASE_URL}?reference=${incrementId}`
-}

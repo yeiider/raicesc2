@@ -11,7 +11,6 @@ import type { Bill } from "@/lib/types"
 import { generateSignature } from "@/helpers/signature.ts"
 import {
   getActivePaymentMethods,
-  getOnepayUrl,
   type PaymentMethod,
   type PaymentMethodId,
 } from "@/lib/payment-config"
@@ -45,11 +44,13 @@ export default function PaymentStep({ bill, onPaymentComplete }: PaymentStepProp
 
   // Función para iniciar el pago con OnePay (redirección externa)
   const initiateOnepayCheckout = () => {
+    if (!bill.onepay_payment_link) {
+      console.error("No hay link de pago de OnePay disponible")
+      return
+    }
     setIsProcessing(true)
-    // El increment_id es el id de la factura
-    const onepayUrl = getOnepayUrl(bill.id)
-    // Redirigir al usuario a la página de OnePay
-    window.location.href = onepayUrl
+    // Usar el link de pago directo de OnePay que viene de la API
+    window.location.href = bill.onepay_payment_link
   }
 
   // Función para iniciar el widget de Wompi

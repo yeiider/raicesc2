@@ -82,6 +82,7 @@ export interface Bill {
     tax?: number
     total?: number
     discount?: number
+    onepay_payment_link?: string
 }
 
 // Tipos para la respuesta de la API de Wompi
