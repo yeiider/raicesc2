@@ -83,6 +83,7 @@ export interface Bill {
     total?: number
     discount?: number
     onepay_payment_link?: string
+    onepay_charge_id?: string
 }
 
 // Tipos para la respuesta de la API de Wompi
@@ -137,6 +138,7 @@ export interface JamundiInvoiceResponse {
         issue_date: string
         due_date: string
         onepay_payment_link?: string
+        onepay_charge_id?: string
         customer: {
             id: number
             first_name: string

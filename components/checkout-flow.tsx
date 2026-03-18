@@ -1,16 +1,16 @@
 "use client"
 
-import {useState, useEffect} from "react"
-import {motion, AnimatePresence} from "framer-motion"
-import {CheckCircle} from "lucide-react"
+import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { CheckCircle } from "lucide-react"
 import BillSearchStep from "./steps/bill-search-step"
 import BillDetailsStep from "./steps/bill-details-step"
 import PaymentStep from "./steps/payment-step"
 import SummaryStep from "./steps/summary-step"
 import CheckoutStepper from "./checkout-stepper"
-import {useToast} from "@/hooks/use-toast"
+import { useToast } from "@/hooks/use-toast"
 
-import {Bill} from "@/lib/types.ts";
+import { Bill } from "@/lib/types.ts";
 
 
 // Interfaz para la respuesta de la API de Jamundí
@@ -24,7 +24,7 @@ export default function CheckoutFlow() {
     const [isLoading, setIsLoading] = useState(false)
     const [isPaymentComplete, setIsPaymentComplete] = useState(false)
     const [transactionId, setTransactionId] = useState("")
-    const {toast} = useToast()
+    const { toast } = useToast()
 
 
     useEffect(() => {
@@ -111,7 +111,7 @@ export default function CheckoutFlow() {
                 clientName: invoice.customer_name,
                 dueDate: new Date(invoice.due_date).toLocaleDateString(),
                 amount: Number.parseFloat(invoice.total),
-                period: new Date(invoice.issue_date).toLocaleDateString("es-CO", {month: "long", year: "numeric"}),
+                period: new Date(invoice.issue_date).toLocaleDateString("es-CO", { month: "long", year: "numeric" }),
                 status: "Pendiente",
                 cedula: invoice.customer?.identity_document,
                 email: invoice.customer?.email_address,
@@ -125,7 +125,7 @@ export default function CheckoutFlow() {
                 tax: Number.parseFloat(invoice.tax),
                 discount: Number.parseFloat(invoice.discount),
                 products: invoice.products,
-                onepay_payment_link: invoice.onepay_payment_link,
+                onepay_charge_id: "https://pagos.onepay.la/payment/" + invoice.onepay_charge_id,
             }
             // Fallback por si no vienen products
             if (!billData.products && invoice.product) {
@@ -211,7 +211,7 @@ export default function CheckoutFlow() {
             dueDate: new Date(factura.fecha_vencimiento).toLocaleDateString(),
             amount: factura.total,
             service: cliente.plan_internet?.nombre || "Servicio de Internet",
-            period: new Date(factura.fecha_emision).toLocaleDateString("es-CO", {month: "long", year: "numeric"}),
+            period: new Date(factura.fecha_emision).toLocaleDateString("es-CO", { month: "long", year: "numeric" }),
             status: cliente.estado_facturas,
             clientId: cliente.id_servicio,
             facturaId: factura.id,
@@ -295,57 +295,57 @@ export default function CheckoutFlow() {
     return (
         <div className="max-w-3xl mx-auto mt-10 mb-10">
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                <CheckoutStepper currentStep={currentStep}/>
+                <CheckoutStepper currentStep={currentStep} />
 
                 <div className="p-6">
                     <AnimatePresence mode="wait">
                         {currentStep === 1 && (
                             <motion.div
                                 key="step1"
-                                initial={{opacity: 0, x: 20}}
-                                animate={{opacity: 1, x: 0}}
-                                exit={{opacity: 0, x: -20}}
-                                transition={{duration: 0.3}}
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -20 }}
+                                transition={{ duration: 0.3 }}
                             >
                                 <BillSearchStep onSearch={handleBillSearch} onMockSearch={handleMockSearch}
-                                                isLoading={isLoading}/>
+                                    isLoading={isLoading} />
                             </motion.div>
                         )}
 
                         {currentStep === 2 && bills.length > 0 && (
                             <motion.div
                                 key="step2"
-                                initial={{opacity: 0, x: 20}}
-                                animate={{opacity: 1, x: 0}}
-                                exit={{opacity: 0, x: -20}}
-                                transition={{duration: 0.3}}
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -20 }}
+                                transition={{ duration: 0.3 }}
                             >
-                                <BillDetailsStep bills={bills} onProceed={handleProceedToPayment}/>
+                                <BillDetailsStep bills={bills} onProceed={handleProceedToPayment} />
                             </motion.div>
                         )}
 
                         {currentStep === 3 && selectedBill && (
                             <motion.div
                                 key="step3"
-                                initial={{opacity: 0, x: 20}}
-                                animate={{opacity: 1, x: 0}}
-                                exit={{opacity: 0, x: -20}}
-                                transition={{duration: 0.3}}
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -20 }}
+                                transition={{ duration: 0.3 }}
                             >
-                                <PaymentStep bill={selectedBill} onPaymentComplete={handlePaymentComplete}/>
+                                <PaymentStep bill={selectedBill} onPaymentComplete={handlePaymentComplete} />
                             </motion.div>
                         )}
 
                         {currentStep === 4 && selectedBill && (
                             <motion.div
                                 key="step4"
-                                initial={{opacity: 0, x: 20}}
-                                animate={{opacity: 1, x: 0}}
-                                exit={{opacity: 0, x: -20}}
-                                transition={{duration: 0.3}}
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -20 }}
+                                transition={{ duration: 0.3 }}
                             >
                                 <SummaryStep bill={selectedBill} transactionId={transactionId}
-                                             onRestart={handleRestart}/>
+                                    onRestart={handleRestart} />
                             </motion.div>
                         )}
                     </AnimatePresence>
@@ -354,11 +354,11 @@ export default function CheckoutFlow() {
 
             {isPaymentComplete && (
                 <motion.div
-                    initial={{opacity: 0, y: 20}}
-                    animate={{opacity: 1, y: 0}}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
                     className="mt-6 p-4 bg-green-50 rounded-lg flex items-center text-green-700"
                 >
-                    <CheckCircle className="mr-2 h-5 w-5"/>
+                    <CheckCircle className="mr-2 h-5 w-5" />
                     <span>¡Pago realizado con éxito! Tu factura ha sido pagada.</span>
                 </motion.div>
             )}
