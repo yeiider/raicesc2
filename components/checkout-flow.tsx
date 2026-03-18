@@ -125,7 +125,7 @@ export default function CheckoutFlow() {
                 tax: Number.parseFloat(invoice.tax),
                 discount: Number.parseFloat(invoice.discount),
                 products: invoice.products,
-                onepay_charge_id: "https://pagos.onepay.la/payment/" + invoice.onepay_charge_id,
+                onepay_payment_link: "https://pagos.onepay.la/payment/" + invoice.onepay_charge_id,
             }
             // Fallback por si no vienen products
             if (!billData.products && invoice.product) {
@@ -232,7 +232,6 @@ export default function CheckoutFlow() {
         const ciudades: Record<string, string> = {
             cali: "Cali",
             guachene: "Guachené",
-            padilla: "Padilla",
             jamundi: "Jamundí",
             villarica: "Villa Rica",
             caloto: "Caloto",
