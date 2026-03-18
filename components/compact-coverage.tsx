@@ -106,10 +106,7 @@ export function CompactCoverage() {
                   <Check className="h-3 w-3 text-amber-500 mr-2 flex-shrink-0" />
                   <span>Caloto</span>
                 </li>
-                <li className="flex items-center text-sm text-gray-600">
-                  <Check className="h-3 w-3 text-amber-500 mr-2 flex-shrink-0" />
-                  <span>Padilla</span>
-                </li>
+
               </ul>
             </div>
           </div>

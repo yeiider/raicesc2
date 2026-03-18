@@ -148,13 +148,7 @@ export function Locations() {
                           <p className="text-xs text-gray-500">Calle 4 # 14-37</p>
                         </div>
                       </li>
-                      <li className="flex items-start">
-                        <span className="w-1.5 h-1.5 bg-amber-500 rounded-full mr-2 mt-1.5"></span>
-                        <div>
-                          <span className="font-medium">Padilla</span>
-                          <p className="text-xs text-gray-500">Calle 9 # 9-05 esquina</p>
-                        </div>
-                      </li>
+
                     </ul>
                   </div>
                 </div>
