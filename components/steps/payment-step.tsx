@@ -47,7 +47,7 @@ export default function PaymentStep({ bill, onPaymentComplete }: PaymentStepProp
   const initiateOnepayCheckout = () => {
     setIsProcessing(true)
     // El increment_id es el id de la factura
-    const onepayUrl = getOnepayUrl(bill.reference)
+    const onepayUrl = getOnepayUrl(bill.id)
     // Redirigir al usuario a la página de OnePay
     window.location.href = onepayUrl
   }
@@ -133,8 +133,8 @@ export default function PaymentStep({ bill, onPaymentComplete }: PaymentStepProp
             <div
               key={method.id}
               className={`flex items-center space-x-3 p-4 border rounded-lg cursor-pointer transition-all ${selectedMethod === method.id
-                  ? "border-[#2d4594] bg-[#f0f4ff]"
-                  : "border-gray-200 hover:border-gray-300"
+                ? "border-[#2d4594] bg-[#f0f4ff]"
+                : "border-gray-200 hover:border-gray-300"
                 }`}
               onClick={() => setSelectedMethod(method.id)}
             >
