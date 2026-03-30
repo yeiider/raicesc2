@@ -17,14 +17,14 @@ export const PAYMENT_METHODS: PaymentMethod[] = [
     id: "onepay",
     name: "OnePay",
     description: "Pago seguro con OnePay",
-    enabled: true, // ACTIVADO
+    enabled: false, // ACTIVADO
     logo: "/onepay-logo.svg", // Agrega el logo si lo tienes
   },
   {
     id: "wompi",
     name: "Wompi",
     description: "Pago seguro con Wompi",
-    enabled: false, // DESACTIVADO temporalmente
+    enabled: true, // DESACTIVADO temporalmente
     logo: "/Wompi_LogoPrincipal.png",
   },
 ]
