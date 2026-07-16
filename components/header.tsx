@@ -50,13 +50,7 @@ export function Header() {
                         <ChevronDown className="h-4 w-4 ml-1 opacity-70"/>
                     </Link>
 
-                    <Link
-                        href="/ofertas"
-                        className="group flex items-center text-gray-700 hover:text-raicesBlue font-medium transition-colors py-2 font-heading"
-                    >
-                        <Gift className="h-5 w-5 mr-2 text-raicesRed group-hover:text-raicesBlue transition-colors"/>
-                        <span className="text-base tracking-wide">Ofertas</span>
-                    </Link>
+
                 </nav>
 
                 {/* Desktop Buttons */}
