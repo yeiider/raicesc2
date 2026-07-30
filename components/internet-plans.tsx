@@ -207,7 +207,7 @@ export function InternetPlans() {
                   onClick={() => {
                     window.open(
                       getWhatsAppLink(
-                        `Hola, estoy interesado en probar gratis por 30 días el ${plan.name} de Internet. ¿Podrían brindarme más información?`,
+                        `Hola, estoy interesado en el servicio ${plan.name} de Internet. ¿Podrían brindarme más información?`,
                       ),
                       "_blank",
                     )
@@ -218,7 +218,7 @@ export function InternetPlans() {
                       : "bg-gradient-to-r from-raicesRed to-red-500 hover:from-red-600 hover:to-raicesRed"
                   }`}
                 >
-                  Probar 30 días gratis
+                  Obtener
                 </button>
               </CardContent>
             </Card>
