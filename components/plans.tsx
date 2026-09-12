@@ -10,7 +10,7 @@ const plans = [
     id: 1,
     name: "Plan Básico",
     tagline: "Tu mundo sin pausas",
-    speed: 300,
+    speed: 200,
     price: 65000,
     features: ["Televisión en HD", "Soporte especializado", "Sin permanencia"],
     icon: Zap,

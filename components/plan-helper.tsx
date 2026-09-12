@@ -12,7 +12,7 @@ const profiles = [
     title: "Hogar pequeño",
     desc: "1 a 2 personas, redes sociales, navegación y streaming básico.",
     plan: "Plan Básico",
-    speed: "300 Megas",
+    speed: "200 Megas",
     accent: "from-sky-400 to-raicesBlue",
   },
   {
