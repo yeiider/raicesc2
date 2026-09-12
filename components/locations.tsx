@@ -8,7 +8,7 @@ import type { CoveragePoint } from "@/components/region-map"
 const RegionMap = dynamic(() => import("@/components/region-map"), {
   ssr: false,
   loading: () => (
-    <div className="flex h-[440px] w-full items-center justify-center rounded-3xl border border-white/10 bg-white/5 text-white/60 md:h-[540px]">
+    <div className="flex h-[440px] w-full items-center justify-center rounded-3xl border border-white/10 bg-white/5 text-white/60 shadow-2xl ring-1 ring-white/5 md:h-[540px]">
       Cargando mapa…
     </div>
   ),
