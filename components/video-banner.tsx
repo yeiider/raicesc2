@@ -74,14 +74,14 @@ export function VideoBanner() {
           maskImage: "radial-gradient(120% 100% at 30% 50%, black 40%, transparent 100%)",
         }}
       />
-      <div aria-hidden className="absolute inset-0 z-[3] bg-gradient-to-r from-[#0a1024] via-[#0a1024]/70 to-transparent" />
+      <div aria-hidden className="absolute inset-0 z-[3] bg-[#0a1024]/60" />
 
-      <div className="container relative z-20 mx-auto flex min-h-[440px] items-center px-4 py-16 md:min-h-[520px]">
+      <div className="container relative z-20 mx-auto flex min-h-[440px] items-center justify-center px-4 py-16 md:min-h-[520px]">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="group relative max-w-2xl overflow-hidden rounded-3xl border border-white/15 bg-white/[0.06] p-8 shadow-[0_8px_40px_rgba(0,0,0,0.45)] backdrop-blur-xl md:p-10"
+          className="group relative mx-auto flex max-w-2xl flex-col items-center overflow-hidden rounded-3xl border border-white/15 bg-white/[0.06] p-8 text-center shadow-[0_8px_40px_rgba(0,0,0,0.45)] backdrop-blur-xl md:p-10"
         >
           {/* Glow ring + corner accents */}
           <div aria-hidden className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10" />
@@ -117,7 +117,7 @@ export function VideoBanner() {
             estabilidad total para todo tu hogar o negocio.
           </p>
 
-          <div className="relative mt-8 flex flex-wrap items-center gap-4">
+          <div className="relative mt-8 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="#planes"
               className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-raicesRed to-red-600 px-7 py-3.5 font-semibold text-white shadow-lg shadow-raicesRed/25 transition-transform hover:scale-[1.03]"

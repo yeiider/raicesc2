@@ -26,7 +26,7 @@ export function Footer() {
                 <Phone className="h-4 w-4 text-raicesRed mr-2 flex-shrink-0" />
                 <div>
                   <p className="text-gray-300">(602) 891 2989</p>
-                  <p className="text-gray-300">316 525 9832</p>
+                  <p className="text-gray-300">314 734 7051</p>
                 </div>
               </li>
               <li className="flex items-center">
