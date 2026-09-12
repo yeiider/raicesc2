@@ -4,12 +4,11 @@ import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, Wifi, ShieldCheck, MonitorPlay, ShoppingBag, CreditCard } from "lucide-react"
+import { Menu, X, Wifi, MonitorPlay, ShoppingBag, CreditCard } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const navItems = [
   { label: "Internet Hogar", href: "/internet", icon: Wifi },
-  { label: "Internet + Seguridad", href: "/internet#videovigilancia", icon: ShieldCheck },
   { label: "Streaming", href: "/television", icon: MonitorPlay },
   { label: "Tienda", href: "/#tienda", icon: ShoppingBag },
 ]
