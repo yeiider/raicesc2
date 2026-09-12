@@ -26,10 +26,8 @@ export function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 w-full transition-all duration-300 ${
-        scrolled || isMenuOpen
-          ? "border-b border-gray-100 bg-white/90 shadow-sm backdrop-blur-md"
-          : "border-b border-transparent bg-transparent"
+      className={`fixed inset-x-0 top-0 z-50 w-full border-b border-gray-100 bg-white/90 backdrop-blur-md transition-all duration-300 ${
+        scrolled || isMenuOpen ? "shadow-md" : "shadow-sm"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-4 py-3">
@@ -45,9 +43,7 @@ export function Header() {
               <Link
                 key={item.label}
                 href={item.href}
-                className={`group relative flex items-center gap-2 rounded-full px-4 py-2 font-heading text-sm font-medium transition-colors ${
-                  scrolled ? "text-gray-700 hover:text-raicesBlue" : "text-white/90 hover:text-white"
-                }`}
+                className="group relative flex items-center gap-2 rounded-full px-4 py-2 font-heading text-sm font-medium text-gray-700 transition-colors hover:text-raicesBlue"
               >
                 <Icon className="h-4 w-4 text-raicesRed transition-colors group-hover:text-raicesBlue" />
                 <span className="tracking-wide">{item.label}</span>
@@ -69,7 +65,7 @@ export function Header() {
 
         {/* Mobile Menu Button */}
         <button
-          className={`lg:hidden ${scrolled || isMenuOpen ? "text-gray-700" : "text-white"}`}
+          className="text-gray-700 lg:hidden"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
         >
