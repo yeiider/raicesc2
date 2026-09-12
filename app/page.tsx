@@ -1,5 +1,6 @@
 import { Header } from "@/components/header"
 import { Carousel } from "@/components/carousel"
+import { ServicesShowcase } from "@/components/services-showcase"
 import { Plans } from "@/components/plans"
 import { ConnectivityBenefits } from "@/components/connectivity-benefits"
 import { FaqSection } from "@/components/faq-section"
@@ -14,6 +15,7 @@ export default function Home() {
     <main className="min-h-screen flex flex-col">
       <Header />
       <Carousel />
+      <ServicesShowcase />
       <Plans />
       <ConnectivityBenefits />
       <FaqSection />
