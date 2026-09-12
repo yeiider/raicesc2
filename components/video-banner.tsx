@@ -14,6 +14,24 @@ const floatingImages = [
 export function VideoBanner() {
   return (
     <section className="relative overflow-hidden bg-raicesBlue text-white">
+      {/* Background video — replace /public/videos/banner.mp4 with your own clip.
+          Autoplay requires muted + playsInline. The animated backdrop below stays
+          visible as a fallback while the video is missing or loading. */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        poster="/images/CARRUSEL/mesa1.png"
+        className="absolute inset-0 z-[1] h-full w-full object-cover opacity-50"
+      >
+        <source src="/videos/banner.mp4" type="video/mp4" />
+        <source src="/videos/banner.webm" type="video/webm" />
+      </video>
+
+      {/* Dark overlay for text legibility over the video */}
+      <div aria-hidden className="absolute inset-0 z-[2] bg-raicesBlue/50" />
+
       {/* Animated gradient backdrop */}
       <motion.div
         aria-hidden
