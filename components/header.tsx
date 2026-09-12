@@ -28,7 +28,7 @@ export function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 w-full transition-all duration-300 ${
         scrolled || isMenuOpen
-          ? "border-b border-white/10 bg-[#0a1024]/80 shadow-lg backdrop-blur-xl"
+          ? "border-b border-gray-100 bg-white/90 shadow-sm backdrop-blur-md"
           : "border-b border-transparent bg-transparent"
       }`}
     >
@@ -45,11 +45,13 @@ export function Header() {
               <Link
                 key={item.label}
                 href={item.href}
-                className="group relative flex items-center gap-2 rounded-full px-4 py-2 font-heading text-sm font-medium text-white/90 transition-colors hover:text-white"
+                className={`group relative flex items-center gap-2 rounded-full px-4 py-2 font-heading text-sm font-medium transition-colors ${
+                  scrolled ? "text-gray-700 hover:text-raicesBlue" : "text-white/90 hover:text-white"
+                }`}
               >
-                <Icon className="h-4 w-4 text-raicesRed transition-colors group-hover:text-sky-300" />
+                <Icon className="h-4 w-4 text-raicesRed transition-colors group-hover:text-raicesBlue" />
                 <span className="tracking-wide">{item.label}</span>
-                <span className="absolute inset-x-4 -bottom-0.5 h-0.5 origin-left scale-x-0 rounded-full bg-gradient-to-r from-raicesRed to-sky-400 transition-transform duration-300 group-hover:scale-x-100" />
+                <span className="absolute inset-x-4 -bottom-0.5 h-0.5 origin-left scale-x-0 rounded-full bg-gradient-to-r from-raicesRed to-raicesBlue transition-transform duration-300 group-hover:scale-x-100" />
               </Link>
             )
           })}
@@ -67,7 +69,7 @@ export function Header() {
 
         {/* Mobile Menu Button */}
         <button
-          className="text-white lg:hidden"
+          className={`lg:hidden ${scrolled || isMenuOpen ? "text-gray-700" : "text-white"}`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
         >
@@ -83,7 +85,7 @@ export function Header() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="overflow-hidden border-t border-white/10 bg-[#0a1024]/95 backdrop-blur-xl lg:hidden"
+            className="overflow-hidden border-t border-gray-100 bg-white backdrop-blur-xl lg:hidden"
           >
             <div className="container mx-auto flex flex-col gap-1 px-4 py-4">
               {navItems.map((item, index) => {
@@ -97,7 +99,7 @@ export function Header() {
                   >
                     <Link
                       href={item.href}
-                      className="flex items-center gap-3 rounded-xl px-4 py-3 font-heading font-medium text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                      className="flex items-center gap-3 rounded-xl px-4 py-3 font-heading font-medium text-gray-700 transition-colors hover:bg-gray-50 hover:text-raicesBlue"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       <Icon className="h-5 w-5 text-raicesRed" />
