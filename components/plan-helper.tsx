@@ -50,7 +50,7 @@ export function PlanHelper() {
   const active = profiles.find((p) => p.id === selected)!
 
   return (
-    <section className="relative overflow-hidden bg-transparent py-20" id="ayuda-plan">
+    <section className="relative overflow-hidden bg-gradient-to-b from-white to-sky-50 py-20" id="ayuda-plan">
       <div className="container mx-auto px-4">
         <div className="mb-12 text-center">
           <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-raicesBlue/10 px-5 py-1.5 text-sm font-semibold text-raicesBlue">
@@ -77,7 +77,7 @@ export function PlanHelper() {
                   className={`relative flex flex-col items-start rounded-2xl border p-5 text-left transition-all ${
                     isActive
                       ? "border-transparent shadow-xl"
-                      : "border-white/60 bg-white/70 backdrop-blur-md hover:border-raicesBlue/40 hover:shadow-md"
+                      : "border-gray-200 bg-white hover:border-raicesBlue/40 hover:shadow-md"
                   }`}
                 >
                   {isActive && (

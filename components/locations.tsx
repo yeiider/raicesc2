@@ -38,7 +38,7 @@ const locations = [
 
 export function Locations() {
   return (
-    <section className="relative overflow-hidden bg-transparent py-20" id="cobertura">
+    <section className="relative overflow-hidden bg-gradient-to-b from-sky-50 to-white py-20" id="cobertura">
       <motion.div
         aria-hidden
         className="pointer-events-none absolute left-1/3 top-0 h-72 w-72 rounded-full bg-raicesBlue/10 blur-3xl"
@@ -71,7 +71,7 @@ export function Locations() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 whileHover={{ y: -6 }}
-                className="group relative overflow-hidden rounded-3xl border border-white/60 bg-white/70 backdrop-blur-md p-6 shadow-lg transition-shadow hover:shadow-2xl"
+                className="group relative overflow-hidden rounded-3xl border border-gray-100 bg-white p-6 shadow-lg transition-shadow hover:shadow-2xl"
               >
                 <div
                   aria-hidden

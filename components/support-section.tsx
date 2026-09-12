@@ -29,7 +29,7 @@ export function SupportSection() {
   ]
 
   return (
-    <section className="py-10 bg-transparent">
+    <section className="py-10 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
           <h2 className="text-2xl font-bold mb-2 font-heading">Soporte y Atención al Cliente</h2>
@@ -45,7 +45,7 @@ export function SupportSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white/70 backdrop-blur-md rounded-lg shadow-sm border border-white/60 hover:shadow-md transition-all duration-300 p-5"
+              className="bg-white rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 p-5"
             >
               <div className="flex items-center mb-3">
                 <div

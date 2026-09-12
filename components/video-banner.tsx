@@ -100,9 +100,6 @@ export function VideoBanner() {
           </div>
         </motion.div>
       </div>
-
-      {/* Bottom fade into the animated page background */}
-      <div className="absolute inset-x-0 bottom-0 z-10 h-20 bg-gradient-to-t from-[#f6f9ff] to-transparent" />
     </section>
   )
 }
