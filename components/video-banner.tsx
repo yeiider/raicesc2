@@ -63,49 +63,72 @@ export function VideoBanner() {
         />
       ))}
 
-      {/* Solid overlay for legibility */}
-      <div aria-hidden className="absolute inset-0 z-[3] bg-gradient-to-r from-[#0a1024] via-[#0a1024]/80 to-[#0a1024]/40" />
+      {/* Tech grid + soft overlay for legibility */}
+      <div
+        aria-hidden
+        className="absolute inset-0 z-[3] opacity-[0.12]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(96,165,250,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(96,165,250,0.6) 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+          maskImage: "radial-gradient(120% 100% at 30% 50%, black 40%, transparent 100%)",
+        }}
+      />
+      <div aria-hidden className="absolute inset-0 z-[3] bg-gradient-to-r from-[#0a1024] via-[#0a1024]/70 to-transparent" />
 
-      <div className="container relative z-20 mx-auto flex min-h-[420px] flex-col justify-center px-4 py-16 md:min-h-[500px]">
+      <div className="container relative z-20 mx-auto flex min-h-[440px] items-center px-4 py-16 md:min-h-[520px]">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="max-w-3xl"
+          className="group relative max-w-2xl overflow-hidden rounded-3xl border border-white/15 bg-white/[0.06] p-8 shadow-[0_8px_40px_rgba(0,0,0,0.45)] backdrop-blur-xl md:p-10"
         >
+          {/* Glow ring + corner accents */}
+          <div aria-hidden className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10" />
+          <div aria-hidden className="pointer-events-none absolute -left-px -top-px h-8 w-8 rounded-tl-3xl border-l-2 border-t-2 border-raicesRed/70" />
+          <div aria-hidden className="pointer-events-none absolute -bottom-px -right-px h-8 w-8 rounded-br-3xl border-b-2 border-r-2 border-sky-400/70" />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-raicesBlue/25 blur-3xl"
+          />
+
           <motion.span
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.15, duration: 0.5 }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-medium backdrop-blur"
+            className="relative mb-6 inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-400/10 px-4 py-1.5 text-sm font-semibold text-sky-100 backdrop-blur"
           >
-            <Zap className="h-4 w-4 text-raicesRed" />
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-sky-400" />
+            </span>
             Fibra óptica de última generación
           </motion.span>
 
-          <h1 className="text-balance text-4xl font-extrabold leading-tight tracking-tight md:text-6xl">
-            Sube tu conexión{" "}
-            <span className="relative inline-block">
-              <span className="relative z-10">sin límites</span>
-              <motion.span
-                aria-hidden
-                className="absolute inset-x-0 bottom-1 z-0 h-3 rounded bg-raicesRed/60"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ delay: 0.7, duration: 0.6 }}
-                style={{ transformOrigin: "left" }}
-              />
+          <h1 className="relative text-balance font-heading text-4xl font-extrabold leading-[1.05] tracking-tight md:text-6xl">
+            Sube tu conexión
+            <span className="mt-2 block bg-gradient-to-r from-sky-300 via-raicesBlue to-raicesRed bg-clip-text text-transparent [text-shadow:0_0_30px_rgba(56,189,248,0.25)]">
+              a la velocidad de la luz
             </span>
           </h1>
 
-          <div className="mt-8">
+          <p className="relative mt-5 max-w-xl text-pretty leading-relaxed text-white/75 md:text-lg">
+            Navega, transmite y juega sin interrupciones. Fibra 100% óptica con velocidad simétrica, baja latencia y
+            estabilidad total para todo tu hogar o negocio.
+          </p>
+
+          <div className="relative mt-8 flex flex-wrap items-center gap-4">
             <Link
               href="#planes"
-              className="inline-flex items-center gap-2 rounded-full bg-raicesRed px-7 py-3.5 font-semibold text-white shadow-lg transition-transform hover:scale-[1.03]"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-raicesRed to-red-600 px-7 py-3.5 font-semibold text-white shadow-lg shadow-raicesRed/25 transition-transform hover:scale-[1.03]"
             >
               <Play className="h-5 w-5" />
               Ver planes
             </Link>
+            <span className="inline-flex items-center gap-2 text-sm font-medium text-white/70">
+              <Zap className="h-4 w-4 text-sky-300" />
+              Velocidad simétrica garantizada
+            </span>
           </div>
         </motion.div>
       </div>
