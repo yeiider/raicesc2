@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Wifi, Play, ArrowRight, Zap } from "lucide-react"
+import { Play, Zap } from "lucide-react"
 
 const floatingImages = [
   { src: "/images/CARRUSEL/mesa1.png", className: "top-[8%] right-[6%] w-40 h-28 md:w-56 md:h-36", delay: 0 },
@@ -86,27 +86,27 @@ export function VideoBanner() {
         </motion.div>
       ))}
 
-      <div className="container relative z-20 mx-auto flex min-h-[520px] flex-col justify-center px-4 py-20 md:min-h-[600px]">
+      <div className="container relative z-20 mx-auto flex min-h-[420px] flex-col justify-center px-4 py-16 md:min-h-[500px]">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="max-w-2xl"
+          className="max-w-3xl"
         >
           <motion.span
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.15, duration: 0.5 }}
-            className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-medium backdrop-blur"
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-medium backdrop-blur"
           >
             <Zap className="h-4 w-4 text-raicesRed" />
-            Conexión de fibra óptica en tu ciudad
+            Fibra óptica de última generación
           </motion.span>
 
           <h1 className="text-balance text-4xl font-extrabold leading-tight tracking-tight md:text-6xl">
-            Internet que{" "}
+            La mejor{" "}
             <span className="relative inline-block">
-              <span className="relative z-10">se mueve</span>
+              <span className="relative z-10">conexión de fibra óptica</span>
               <motion.span
                 aria-hidden
                 className="absolute inset-x-0 bottom-1 z-0 h-3 rounded bg-raicesRed/60"
@@ -116,23 +116,10 @@ export function VideoBanner() {
                 style={{ transformOrigin: "left" }}
               />
             </span>{" "}
-            contigo
+            en tu ciudad
           </h1>
 
-          <p className="mt-5 max-w-xl text-pretty text-lg text-white/80">
-            Navega, transmite y juega sin límites con la máxima velocidad. Planes de internet hogar,
-            seguridad y streaming diseñados para toda la familia.
-          </p>
-
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <Link
-              href="/internet"
-              className="group inline-flex items-center gap-2 rounded-full bg-raicesRed px-7 py-3.5 font-semibold text-white shadow-lg shadow-raicesRed/30 transition-transform hover:scale-105"
-            >
-              <Wifi className="h-5 w-5" />
-              Ver planes
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
+          <div className="mt-8">
             <Link
               href="/#tienda"
               className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/5 px-7 py-3.5 font-semibold text-white backdrop-blur transition-colors hover:bg-white/15"
@@ -140,24 +127,6 @@ export function VideoBanner() {
               <Play className="h-5 w-5" />
               Explorar servicios
             </Link>
-          </div>
-
-          <div className="mt-10 flex flex-wrap gap-8">
-            {[
-              { value: "500 Mbps", label: "Velocidad máxima" },
-              { value: "24/7", label: "Soporte técnico" },
-              { value: "99.9%", label: "Disponibilidad" },
-            ].map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.9 + i * 0.15, duration: 0.5 }}
-              >
-                <div className="text-2xl font-bold text-white md:text-3xl">{stat.value}</div>
-                <div className="text-sm text-white/60">{stat.label}</div>
-              </motion.div>
-            ))}
           </div>
         </motion.div>
       </div>

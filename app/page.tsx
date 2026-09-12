@@ -3,9 +3,8 @@ import { VideoBanner } from "@/components/video-banner"
 import { ServicesShowcase } from "@/components/services-showcase"
 import { Plans } from "@/components/plans"
 import { ConnectivityBenefits } from "@/components/connectivity-benefits"
-import { FaqSection } from "@/components/faq-section"
+import { PlanHelper } from "@/components/plan-helper"
 import { SupportSection } from "@/components/support-section"
-import { Testimonials } from "@/components/testimonials"
 import { Locations } from "@/components/locations"
 import { Footer } from "@/components/footer"
 import { PromoPopup } from "@/components/promo-popup"
@@ -17,10 +16,9 @@ export default function Home() {
       <VideoBanner />
       <ServicesShowcase />
       <Plans />
+      <PlanHelper />
       <ConnectivityBenefits />
-      <FaqSection />
       <SupportSection />
-      <Testimonials />
       <Locations />
       <Footer />
 
