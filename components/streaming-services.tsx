@@ -64,47 +64,25 @@ export function StreamingServices() {
         </div>
       </section>
 
-      {/* Paquete Flex - parrilla de canales */}
+      {/* Paquete Flex - imagen de canales */}
       <section className="bg-white py-16" id="paquete-flex">
-        <div className="container mx-auto grid items-center gap-10 px-4 lg:grid-cols-2">
-          <div>
+        <div className="container mx-auto px-4">
+          <div className="mx-auto mb-10 max-w-2xl text-center">
             <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-raicesBlue/20 bg-raicesBlue/5 px-4 py-1.5 text-sm font-semibold text-raicesBlue">
               <Tv className="h-4 w-4" />
               Televisión · Paquete Flex
             </span>
             <h2 className="text-balance font-heading text-3xl font-extrabold text-gray-900 md:text-4xl">
-              Televisión con Paquete Flex
+              Todos los canales del Paquete Flex
             </h2>
-            <p className="mt-4 text-pretty leading-relaxed text-gray-600">
-              Nuestra oferta de servicios es variada y está sujeta a cobertura. Con Raíces disfruta de internet,
-              televisión y opciones de streaming para que no te pierdas tus series, películas y contenidos favoritos.
-            </p>
-            <p className="mt-3 font-semibold text-gray-800">
-              Escríbenos y consulta los servicios disponibles para tu zona.
-            </p>
-
-            <button
-              onClick={() =>
-                window.open(
-                  getWhatsAppLink(
-                    "Hola, quiero conocer el Paquete Flex de televisión y los canales disponibles en mi zona.",
-                  ),
-                  "_blank",
-                )
-              }
-              className="mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-raicesRed to-red-500 px-7 py-3 font-semibold text-white shadow-lg transition-transform hover:scale-[1.03]"
-            >
-              <MessageCircle className="h-5 w-5" />
-              Consultar canales
-            </button>
           </div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="overflow-hidden rounded-3xl border border-gray-100 shadow-xl"
+            className="mx-auto max-w-3xl overflow-hidden rounded-3xl border border-gray-100 shadow-xl"
           >
             <Image
               src="/paquete-flex-canales.jpg"
@@ -112,6 +90,7 @@ export function StreamingServices() {
               width={1120}
               height={1600}
               className="h-auto w-full object-cover"
+              priority
             />
           </motion.div>
         </div>
