@@ -1,6 +1,6 @@
 import { Header } from "@/components/header"
+import { AnimatedBackground } from "@/components/animated-background"
 import { VideoBanner } from "@/components/video-banner"
-import { ServicesShowcase } from "@/components/services-showcase"
 import { Plans } from "@/components/plans"
 import { ConnectivityBenefits } from "@/components/connectivity-benefits"
 import { PlanHelper } from "@/components/plan-helper"
@@ -11,10 +11,10 @@ import { PromoPopup } from "@/components/promo-popup"
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col">
+    <main className="relative min-h-screen flex flex-col bg-transparent">
+      <AnimatedBackground />
       <Header />
       <VideoBanner />
-      <ServicesShowcase />
       <Plans />
       <PlanHelper />
       <ConnectivityBenefits />

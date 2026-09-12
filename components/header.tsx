@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button"
 
 const navItems = [
   { label: "Internet Hogar", href: "/internet", icon: Wifi },
-  { label: "Internet + Seguridad", href: "/#seguridad", icon: ShieldCheck },
+  { label: "Internet + Seguridad", href: "/internet#videovigilancia", icon: ShieldCheck },
   { label: "Streaming", href: "/television", icon: MonitorPlay },
   { label: "Tienda", href: "/#tienda", icon: ShoppingBag },
 ]

@@ -13,63 +13,34 @@ const floatingImages = [
 
 export function VideoBanner() {
   return (
-    <section className="relative overflow-hidden bg-raicesBlue text-white">
-      {/* Background video — replace /public/videos/banner.mp4 with your own clip.
-          Autoplay requires muted + playsInline. The animated backdrop below stays
-          visible as a fallback while the video is missing or loading. */}
+    <section className="relative overflow-hidden bg-[#0a1024] text-white">
+      {/* Background video — replace /public/videos/banner.mp4 with your own clip. */}
       <video
         autoPlay
         loop
         muted
         playsInline
         poster="/images/CARRUSEL/mesa1.png"
-        className="absolute inset-0 z-[1] h-full w-full object-cover opacity-50"
+        className="absolute inset-0 z-[1] h-full w-full object-cover opacity-40"
       >
         <source src="/videos/banner.mp4" type="video/mp4" />
         <source src="/videos/banner.webm" type="video/webm" />
       </video>
 
-      {/* Dark overlay for text legibility over the video */}
-      <div aria-hidden className="absolute inset-0 z-[2] bg-raicesBlue/50" />
+      {/* Clean solid overlay for legibility (no multicolor gradient) */}
+      <div aria-hidden className="absolute inset-0 z-[2] bg-[#0a1024]/70" />
 
-      {/* Animated gradient backdrop */}
+      {/* Animated fine grid for a subtle "motion" feel */}
       <motion.div
         aria-hidden
-        className="absolute inset-0 z-0"
-        style={{
-          background:
-            "radial-gradient(circle at 20% 30%, rgba(29,78,216,0.55), transparent 45%), radial-gradient(circle at 80% 70%, rgba(220,38,38,0.5), transparent 45%), linear-gradient(120deg, #0a1628, #12224a)",
-          backgroundSize: "200% 200%",
-        }}
-        animate={{ backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"] }}
-        transition={{ duration: 18, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-      />
-
-      {/* Moving glow orbs */}
-      <motion.div
-        aria-hidden
-        className="absolute -left-24 top-1/4 h-72 w-72 rounded-full bg-raicesRed/30 blur-3xl z-0"
-        animate={{ x: [0, 60, 0], y: [0, -40, 0] }}
-        transition={{ duration: 12, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-      />
-      <motion.div
-        aria-hidden
-        className="absolute right-0 bottom-0 h-80 w-80 rounded-full bg-sky-400/25 blur-3xl z-0"
-        animate={{ x: [0, -50, 0], y: [0, 30, 0] }}
-        transition={{ duration: 14, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-      />
-
-      {/* Animated grid lines for a "video motion" feel */}
-      <motion.div
-        aria-hidden
-        className="absolute inset-0 z-0 opacity-20"
+        className="absolute inset-0 z-0 opacity-15"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
+            "linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px)",
+          backgroundSize: "56px 56px",
         }}
-        animate={{ backgroundPosition: ["0px 0px", "60px 60px"] }}
-        transition={{ duration: 6, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+        animate={{ backgroundPosition: ["0px 0px", "56px 56px"] }}
+        transition={{ duration: 7, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
       />
 
       {/* Floating product images (parallax drift) */}
@@ -82,7 +53,7 @@ export function VideoBanner() {
           transition={{ duration: 6 + i, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: img.delay }}
         >
           <Image src={img.src || "/placeholder.svg"} alt="" fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-raicesBlue/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a1024]/60 to-transparent" />
         </motion.div>
       ))}
 
@@ -104,9 +75,9 @@ export function VideoBanner() {
           </motion.span>
 
           <h1 className="text-balance text-4xl font-extrabold leading-tight tracking-tight md:text-6xl">
-            La mejor{" "}
+            Sube tu conexión{" "}
             <span className="relative inline-block">
-              <span className="relative z-10">conexión de fibra óptica</span>
+              <span className="relative z-10">sin límites</span>
               <motion.span
                 aria-hidden
                 className="absolute inset-x-0 bottom-1 z-0 h-3 rounded bg-raicesRed/60"
@@ -115,24 +86,23 @@ export function VideoBanner() {
                 transition={{ delay: 0.7, duration: 0.6 }}
                 style={{ transformOrigin: "left" }}
               />
-            </span>{" "}
-            en tu ciudad
+            </span>
           </h1>
 
           <div className="mt-8">
             <Link
-              href="/#tienda"
-              className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/5 px-7 py-3.5 font-semibold text-white backdrop-blur transition-colors hover:bg-white/15"
+              href="#planes"
+              className="inline-flex items-center gap-2 rounded-full bg-raicesRed px-7 py-3.5 font-semibold text-white shadow-lg transition-transform hover:scale-[1.03]"
             >
               <Play className="h-5 w-5" />
-              Explorar servicios
+              Ver planes
             </Link>
           </div>
         </motion.div>
       </div>
 
-      {/* Bottom fade */}
-      <div className="absolute inset-x-0 bottom-0 z-10 h-20 bg-gradient-to-t from-background to-transparent" />
+      {/* Bottom fade into the animated page background */}
+      <div className="absolute inset-x-0 bottom-0 z-10 h-20 bg-gradient-to-t from-[#f6f9ff] to-transparent" />
     </section>
   )
 }

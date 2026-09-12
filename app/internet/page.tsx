@@ -6,6 +6,7 @@ import { InternetPlans } from "@/components/internet-plans"
 import { FiberExplanation } from "@/components/fiber-explanation"
 import { GamerPlan } from "@/components/gamer-plan"
 import { CompactCoverage } from "@/components/compact-coverage"
+import { Videovigilancia } from "@/components/videovigilancia"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 import { getWhatsAppLink } from "@/utils/whatsapp-link"
 import Image from "next/image"
@@ -83,6 +84,7 @@ export default function InternetPage() {
 
       <FiberExplanation />
       <InternetPlans />
+      <Videovigilancia />
       <GamerPlan />
       <CompactCoverage />
       <Footer />
