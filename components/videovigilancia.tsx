@@ -83,62 +83,63 @@ export function Videovigilancia() {
       </div>
 
       <div className="container relative z-10 mx-auto px-4">
-        {/* Centered copy */}
-        <div className="mx-auto max-w-2xl text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-semibold backdrop-blur"
-          >
-            <ShieldCheck className="h-4 w-4 text-raicesRed" />
-            Nuevo · Internet + Seguridad
-          </motion.span>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-balance font-heading text-4xl font-extrabold leading-tight md:text-5xl"
-          >
-            Videovigilancia
-            <span className="block bg-gradient-to-r from-raicesRed to-sky-400 bg-clip-text text-transparent">
-              Todos tenemos algo que cuidar
-            </span>
-          </motion.h2>
-
-          <p className="mx-auto mt-5 max-w-lg text-pretty text-white/75">
-            Protege lo que más importa con nuestro sistema de cámaras inteligentes conectado a tu internet de fibra
-            óptica. Monitorea tu hogar o negocio en tiempo real, con grabación en la nube y alertas al instante.
-          </p>
-
-          <div className="mt-8 flex justify-center">
-            <button
-              onClick={() =>
-                window.open(
-                  getWhatsAppLink(
-                    "Hola, estoy interesado en el servicio de videovigilancia. ¿Podrían brindarme más información?",
-                  ),
-                  "_blank",
-                )
-              }
-              className="inline-flex items-center gap-2 rounded-full bg-raicesRed px-7 py-3.5 font-semibold text-white shadow-lg transition-transform hover:scale-[1.03]"
+        <div className="grid items-center gap-12 lg:grid-cols-2">
+          {/* Copy */}
+          <div className="text-center lg:text-left">
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-semibold backdrop-blur"
             >
-              <Eye className="h-5 w-5" />
-              Quiero proteger lo mío
-            </button>
-          </div>
-        </div>
+              <ShieldCheck className="h-4 w-4 text-raicesRed" />
+              Nuevo · Internet + Seguridad
+            </motion.span>
 
-        {/* Phone mockup: watching the house live from the Raíces CAM app */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="relative mx-auto mt-14 w-[260px]"
-        >
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-balance font-heading text-4xl font-extrabold leading-tight md:text-5xl"
+            >
+              Videovigilancia
+              <span className="block bg-gradient-to-r from-raicesRed to-sky-400 bg-clip-text text-transparent">
+                Todos tenemos algo que cuidar
+              </span>
+            </motion.h2>
+
+            <p className="mx-auto mt-5 max-w-lg text-pretty text-white/75 lg:mx-0">
+              Protege lo que más importa con nuestro sistema de cámaras inteligentes conectado a tu internet de fibra
+              óptica. Monitorea tu hogar o negocio en tiempo real, con grabación en la nube y alertas al instante.
+            </p>
+
+            <div className="mt-8 flex justify-center lg:justify-start">
+              <button
+                onClick={() =>
+                  window.open(
+                    getWhatsAppLink(
+                      "Hola, estoy interesado en el servicio de videovigilancia. ¿Podrían brindarme más información?",
+                    ),
+                    "_blank",
+                  )
+                }
+                className="inline-flex items-center gap-2 rounded-full bg-raicesRed px-7 py-3.5 font-semibold text-white shadow-lg transition-transform hover:scale-[1.03]"
+              >
+                <Eye className="h-5 w-5" />
+                Quiero proteger lo mío
+              </button>
+            </div>
+          </div>
+
+          {/* Phone mockup: watching the house live from the Raíces CAM app */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative mx-auto w-[240px] shrink-0 sm:w-[260px]"
+          >
           {/* glow behind phone */}
           <div className="pointer-events-none absolute -inset-8 rounded-[3rem] bg-raicesBlue/25 blur-3xl" />
 
@@ -203,7 +204,8 @@ export function Videovigilancia() {
               </div>
             </div>
           </div>
-        </motion.div>
+          </motion.div>
+        </div>
 
         {/* Feature grid */}
         <div className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-4">
