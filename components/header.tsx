@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
@@ -15,9 +15,23 @@ const navItems = [
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40)
+    onScroll()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/90 shadow-sm backdrop-blur-md">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 w-full transition-all duration-300 ${
+        scrolled || isMenuOpen
+          ? "border-b border-white/10 bg-[#0a1024]/80 shadow-lg backdrop-blur-xl"
+          : "border-b border-transparent bg-transparent"
+      }`}
+    >
       <div className="container mx-auto flex items-center justify-between px-4 py-3">
         <Link href="/" className="flex items-center">
           <Image src="/images/logo.png" alt="RAICES Logo" width={150} height={60} className="h-11 w-auto" priority />
@@ -31,11 +45,11 @@ export function Header() {
               <Link
                 key={item.label}
                 href={item.href}
-                className="group relative flex items-center gap-2 rounded-full px-4 py-2 font-heading text-sm font-medium text-gray-700 transition-colors hover:text-raicesBlue"
+                className="group relative flex items-center gap-2 rounded-full px-4 py-2 font-heading text-sm font-medium text-white/90 transition-colors hover:text-white"
               >
-                <Icon className="h-4 w-4 text-raicesRed transition-colors group-hover:text-raicesBlue" />
+                <Icon className="h-4 w-4 text-raicesRed transition-colors group-hover:text-sky-300" />
                 <span className="tracking-wide">{item.label}</span>
-                <span className="absolute inset-x-4 -bottom-0.5 h-0.5 origin-left scale-x-0 rounded-full bg-gradient-to-r from-raicesRed to-raicesBlue transition-transform duration-300 group-hover:scale-x-100" />
+                <span className="absolute inset-x-4 -bottom-0.5 h-0.5 origin-left scale-x-0 rounded-full bg-gradient-to-r from-raicesRed to-sky-400 transition-transform duration-300 group-hover:scale-x-100" />
               </Link>
             )
           })}
@@ -53,7 +67,7 @@ export function Header() {
 
         {/* Mobile Menu Button */}
         <button
-          className="text-gray-700 lg:hidden"
+          className="text-white lg:hidden"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
         >
@@ -69,7 +83,7 @@ export function Header() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="overflow-hidden border-t border-gray-100 bg-white lg:hidden"
+            className="overflow-hidden border-t border-white/10 bg-[#0a1024]/95 backdrop-blur-xl lg:hidden"
           >
             <div className="container mx-auto flex flex-col gap-1 px-4 py-4">
               {navItems.map((item, index) => {
@@ -83,7 +97,7 @@ export function Header() {
                   >
                     <Link
                       href={item.href}
-                      className="flex items-center gap-3 rounded-xl px-4 py-3 font-heading font-medium text-gray-700 transition-colors hover:bg-gray-50 hover:text-raicesBlue"
+                      className="flex items-center gap-3 rounded-xl px-4 py-3 font-heading font-medium text-white/90 transition-colors hover:bg-white/10 hover:text-white"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       <Icon className="h-5 w-5 text-raicesRed" />
