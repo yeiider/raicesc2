@@ -1,8 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import Image from "next/image"
-import { MessageCircle, Tv } from "lucide-react"
+import { MessageCircle } from "lucide-react"
 import { getWhatsAppLink } from "@/utils/whatsapp-link"
 
 const services = [
@@ -61,38 +60,6 @@ export function StreamingServices() {
               </motion.button>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Paquete Flex - imagen de canales */}
-      <section className="bg-white py-16" id="paquete-flex">
-        <div className="container mx-auto px-4">
-          <div className="mx-auto mb-10 max-w-2xl text-center">
-            <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-raicesBlue/20 bg-raicesBlue/5 px-4 py-1.5 text-sm font-semibold text-raicesBlue">
-              <Tv className="h-4 w-4" />
-              Televisión · Paquete Flex
-            </span>
-            <h2 className="text-balance font-heading text-3xl font-extrabold text-gray-900 md:text-4xl">
-              Todos los canales del Paquete Flex
-            </h2>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="mx-auto max-w-3xl overflow-hidden rounded-3xl border border-gray-100 shadow-xl"
-          >
-            <Image
-              src="/paquete-flex-canales.jpg"
-              alt="Paquete Flex de Raíces con canales de televisión y plataformas de streaming como GoFlex, WIN+, Paramount+, Netflix y Disney+"
-              width={1120}
-              height={1600}
-              className="h-auto w-full object-cover"
-              priority
-            />
-          </motion.div>
         </div>
       </section>
     </>
