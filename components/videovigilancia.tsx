@@ -76,7 +76,7 @@ export function Videovigilancia() {
       </div>
 
       <div className="container relative z-10 mx-auto px-4 py-4">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
+        <div className="mx-auto grid max-w-5xl items-center gap-10 lg:grid-cols-[1fr_270px] lg:gap-14">
           {/* Copy */}
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
             <motion.span
@@ -94,11 +94,13 @@ export function Videovigilancia() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="mt-6 text-balance font-heading text-4xl font-extrabold leading-[1.15] md:text-5xl md:leading-[1.12]"
+              className="mt-6 font-heading text-4xl font-extrabold uppercase leading-[1.05] tracking-tight md:text-6xl"
             >
               Videovigilancia
-              <span className="mt-2 block bg-gradient-to-r from-raicesRed to-sky-400 bg-clip-text text-transparent">
-                Todos tenemos algo que cuidar
+              <span className="mt-3 block text-2xl font-bold normal-case tracking-normal md:text-3xl">
+                <span className="bg-gradient-to-r from-raicesRed to-sky-400 bg-clip-text text-transparent">
+                  #TodosTenemosAlgoQueCuidar
+                </span>
               </span>
             </motion.h2>
 
@@ -131,7 +133,7 @@ export function Videovigilancia() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative mx-auto w-[240px] shrink-0 sm:w-[260px]"
+            className="relative mx-auto w-[240px] shrink-0 sm:w-[260px] lg:w-full"
           >
           {/* glow behind phone */}
           <div className="pointer-events-none absolute -inset-8 rounded-[3rem] bg-raicesBlue/25 blur-3xl" />
