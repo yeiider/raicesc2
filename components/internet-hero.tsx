@@ -1,7 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Wifi, Zap, ShieldCheck, ArrowRight } from "lucide-react"
+import Link from "next/link"
+import { Wifi, Zap, ShieldCheck, ArrowRight, ArrowLeft } from "lucide-react"
 import { getWhatsAppLink } from "@/utils/whatsapp-link"
 
 const stats = [
@@ -42,6 +43,14 @@ export function InternetHero() {
 
       <div className="container relative z-10 mx-auto grid items-center gap-10 px-4 py-20 lg:grid-cols-2 lg:py-28">
         <div>
+          <Link
+            href="/"
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-sm font-medium text-white/80 backdrop-blur transition-colors hover:bg-white/10 hover:text-white"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Volver al inicio
+          </Link>
+
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}

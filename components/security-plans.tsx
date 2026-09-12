@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Camera, Check, Tv, ShieldCheck } from "lucide-react"
+import { Camera, Check, Tv, ShieldCheck, Smartphone, Cloud } from "lucide-react"
 import { getWhatsAppLink } from "@/utils/whatsapp-link"
 
 const securityPlans = [
@@ -37,7 +37,7 @@ const securityPlans = [
   },
   {
     name: "Premium",
-    speed: 600,
+    speed: 900,
     price: 145000,
     cameras: 3,
     recommended: false,
@@ -49,6 +49,29 @@ const securityPlans = [
       "Soporte y atención al cliente",
       "Cláusula de permanencia 6 meses",
     ],
+  },
+]
+
+const securityServices = [
+  {
+    icon: Camera,
+    title: "Cámaras inteligentes",
+    desc: "Vigilancia en alta definición con visión nocturna y detección de movimiento.",
+  },
+  {
+    icon: Smartphone,
+    title: "App Raíces CAM",
+    desc: "Mira tus cámaras en vivo desde tu celular, iOS o Android, estés donde estés.",
+  },
+  {
+    icon: Cloud,
+    title: "Almacenamiento en la nube",
+    desc: "Tus grabaciones seguras y disponibles, sin depender de equipos locales.",
+  },
+  {
+    icon: Tv,
+    title: "Televisión incluida",
+    desc: "Todos los planes combinan internet de fibra, TV y seguridad en uno solo.",
   },
 ]
 
@@ -65,9 +88,32 @@ export function SecurityPlans() {
             Planes Internet + Seguridad
           </h2>
           <p className="mt-3 text-pretty text-white/70">
-            Combina conectividad de fibra óptica, televisión y cámaras inteligentes en un solo plan. Todos incluyen
-            televisión.
+            Combina conectividad de fibra óptica, televisión y cámaras inteligentes en un solo plan. Protege lo que más
+            te importa mientras disfrutas del mejor internet.
           </p>
+        </div>
+
+        {/* Servicios de seguridad */}
+        <div className="mx-auto mb-14 grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {securityServices.map((service, i) => {
+            const Icon = service.icon
+            return (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                className="group rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur transition-colors hover:border-raicesRed/40 hover:bg-white/10"
+              >
+                <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-raicesRed to-red-500 shadow-md transition-transform group-hover:scale-110">
+                  <Icon className="h-5 w-5 text-white" />
+                </div>
+                <h3 className="font-heading text-base font-bold">{service.title}</h3>
+                <p className="mt-1 text-sm text-white/60">{service.desc}</p>
+              </motion.div>
+            )
+          })}
         </div>
 
         <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
@@ -148,7 +194,9 @@ export function SecurityPlans() {
           ))}
         </div>
 
-        <p className="mt-8 text-center text-sm text-white/50">Servicio sujeto a cobertura de la zona.</p>
+        <p className="mt-8 text-center text-sm text-white/50">
+          Servicio sujeto a cobertura de la zona. Aplican términos y condiciones.
+        </p>
       </div>
     </section>
   )
