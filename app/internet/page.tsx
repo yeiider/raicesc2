@@ -2,7 +2,7 @@
 
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { InternetPlans } from "@/components/internet-plans"
+import { LimitedOffers } from "@/components/limited-offers"
 import { Videovigilancia } from "@/components/videovigilancia"
 import { SecurityPlans } from "@/components/security-plans"
 import { WhatsAppButton } from "@/components/whatsapp-button"
@@ -13,7 +13,7 @@ export default function InternetPage() {
       <Header />
       <Videovigilancia />
       <SecurityPlans />
-      <InternetPlans />
+      <LimitedOffers />
       <Footer />
       <WhatsAppButton />
     </main>
