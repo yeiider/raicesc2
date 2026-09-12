@@ -1,61 +1,70 @@
 "use client"
 
-import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Play, Zap } from "lucide-react"
 
-const floatingImages = [
-  { src: "/images/CARRUSEL/mesa1.png", className: "top-[8%] right-[6%] w-40 h-28 md:w-56 md:h-36", delay: 0 },
-  { src: "/images/CARRUSEL/mesa2.png", className: "bottom-[10%] right-[16%] w-36 h-24 md:w-48 md:h-32", delay: 1.2 },
-  { src: "/images/CARRUSEL/mesa3.png", className: "top-[34%] right-[30%] w-32 h-24 md:w-44 md:h-28", delay: 2.1 },
+// Flowing "fiber optic" light waves rendered as animated SVG strands.
+const waves = [
+  { d: "M-100 180 C 300 60, 700 300, 1100 140 S 1700 60, 2000 200", color: "#1d4ed8", width: 2.5, dur: 7, delay: 0 },
+  { d: "M-100 260 C 350 380, 750 120, 1150 300 S 1750 360, 2000 240", color: "#38bdf8", width: 2, dur: 9, delay: 0.6 },
+  { d: "M-100 340 C 300 220, 720 440, 1120 260 S 1720 200, 2000 360", color: "#ef4444", width: 1.5, dur: 8, delay: 1.2 },
+  { d: "M-100 120 C 400 280, 800 40, 1200 220 S 1800 300, 2000 120", color: "#60a5fa", width: 1.5, dur: 11, delay: 1.8 },
 ]
 
 export function VideoBanner() {
   return (
     <section className="relative overflow-hidden bg-[#0a1024] text-white">
-      {/* Background video — replace /public/videos/banner.mp4 with your own clip. */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        poster="/images/CARRUSEL/mesa1.png"
-        className="absolute inset-0 z-[1] h-full w-full object-cover opacity-40"
-      >
-        <source src="/videos/banner.mp4" type="video/mp4" />
-        <source src="/videos/banner.webm" type="video/webm" />
-      </video>
-
-      {/* Clean solid overlay for legibility (no multicolor gradient) */}
-      <div aria-hidden className="absolute inset-0 z-[2] bg-[#0a1024]/70" />
-
-      {/* Animated fine grid for a subtle "motion" feel */}
-      <motion.div
+      {/* Animated fiber-optic light waves */}
+      <svg
         aria-hidden
-        className="absolute inset-0 z-0 opacity-15"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px)",
-          backgroundSize: "56px 56px",
-        }}
-        animate={{ backgroundPosition: ["0px 0px", "56px 56px"] }}
-        transition={{ duration: 7, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-      />
+        className="absolute inset-0 z-[1] h-full w-full"
+        viewBox="0 0 1900 480"
+        preserveAspectRatio="xMidYMid slice"
+      >
+        <defs>
+          <radialGradient id="banner-glow" cx="50%" cy="40%" r="70%">
+            <stop offset="0%" stopColor="#1d4ed8" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="#0a1024" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+        <rect width="1900" height="480" fill="url(#banner-glow)" />
+        {waves.map((w, i) => (
+          <g key={i}>
+            <motion.path
+              d={w.d}
+              fill="none"
+              stroke={w.color}
+              strokeWidth={w.width}
+              strokeLinecap="round"
+              opacity={0.65}
+              style={{ filter: "drop-shadow(0 0 8px currentColor)", color: w.color }}
+              initial={{ pathLength: 0.15, pathOffset: 0 }}
+              animate={{ pathOffset: [0, 1] }}
+              transition={{ duration: w.dur, repeat: Number.POSITIVE_INFINITY, ease: "linear", delay: w.delay }}
+            />
+          </g>
+        ))}
+      </svg>
 
-      {/* Floating product images (parallax drift) */}
-      {floatingImages.map((img, i) => (
-        <motion.div
-          key={i}
+      {/* Traveling light pulses along the strands */}
+      {waves.map((w, i) => (
+        <motion.span
+          key={`pulse-${i}`}
           aria-hidden
-          className={`pointer-events-none absolute z-10 hidden overflow-hidden rounded-2xl border border-white/10 shadow-2xl md:block ${img.className}`}
-          animate={{ y: [0, -18, 0], rotate: [0, i % 2 === 0 ? 2 : -2, 0] }}
-          transition={{ duration: 6 + i, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: img.delay }}
-        >
-          <Image src={img.src || "/placeholder.svg"} alt="" fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a1024]/60 to-transparent" />
-        </motion.div>
+          className="absolute z-[2] h-1.5 w-1.5 rounded-full"
+          style={{
+            top: `${18 + i * 14}%`,
+            background: w.color,
+            boxShadow: `0 0 12px 4px ${w.color}`,
+          }}
+          animate={{ left: ["-5%", "105%"], opacity: [0, 1, 1, 0] }}
+          transition={{ duration: w.dur, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: w.delay }}
+        />
       ))}
+
+      {/* Solid overlay for legibility */}
+      <div aria-hidden className="absolute inset-0 z-[3] bg-gradient-to-r from-[#0a1024] via-[#0a1024]/80 to-[#0a1024]/40" />
 
       <div className="container relative z-20 mx-auto flex min-h-[420px] flex-col justify-center px-4 py-16 md:min-h-[500px]">
         <motion.div
