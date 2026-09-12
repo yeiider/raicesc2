@@ -4,7 +4,7 @@ import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, ArrowRight } from "
 
 export function Footer() {
   return (
-    <footer className="bg-blue-950 text-white pt-10 pb-6 relative overflow-hidden">
+    <footer className="bg-[#0a1024] text-white pt-10 pb-6 relative overflow-hidden border-t border-white/10">
       {/* Elementos decorativos sutiles */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-5 pointer-events-none">
         <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-white blur-3xl"></div>
@@ -26,7 +26,7 @@ export function Footer() {
                 <Phone className="h-4 w-4 text-raicesRed mr-2 flex-shrink-0" />
                 <div>
                   <p className="text-gray-300">(602) 891 2989</p>
-                  <p className="text-gray-300">316 525 9832</p>
+                  <p className="text-gray-300">314 734 7051</p>
                 </div>
               </li>
               <li className="flex items-center">

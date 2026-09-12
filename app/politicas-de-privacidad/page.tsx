@@ -235,7 +235,7 @@ export default function PoliticasPrivacidad() {
                     <Phone className="h-4 w-4 text-raices-blue mr-3" />
                     <div className="text-gray-700">
                       <p>(602) 891 2989</p>
-                      <p>316 525 9832</p>
+                      <p>314 734 7051</p>
                     </div>
                   </div>
                   <div className="flex items-start">

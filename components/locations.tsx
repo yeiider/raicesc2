@@ -1,158 +1,124 @@
-import { MapPin, Building2, Home, Trees, Landmark } from "lucide-react"
+"use client"
+
+import dynamic from "next/dynamic"
+import { motion } from "framer-motion"
+import { MapPin } from "lucide-react"
+import type { CoveragePoint } from "@/components/region-map"
+
+const RegionMap = dynamic(() => import("@/components/region-map"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex h-[440px] w-full items-center justify-center rounded-3xl border border-white/10 bg-white/5 text-white/60 shadow-2xl ring-1 ring-white/5 md:h-[540px]">
+      Cargando mapa…
+    </div>
+  ),
+})
+
+const points: CoveragePoint[] = [
+  {
+    city: "Cali",
+    lat: 3.4516,
+    lng: -76.532,
+    address: "Carrera 121 # 42-93",
+    color: "#e11d2a",
+    zones: ["Ciudad Pacífica", "Bochalema", "Cachipay", "Ciudad Meléndez", "Vivero"],
+  },
+  {
+    city: "Jamundí",
+    lat: 3.2606,
+    lng: -76.5425,
+    color: "#1d4ed8",
+    zones: ["El Castillo", "Ciudad Country", "Sachamate", "Parque Natura"],
+  },
+  {
+    city: "Puerto Tejada",
+    lat: 3.234,
+    lng: -76.418,
+    address: "Calle 86A # 22-03 esquina",
+    color: "#0891b2",
+    zones: ["Ciudad del Sur"],
+  },
+  {
+    city: "Guachené",
+    lat: 3.135,
+    lng: -76.392,
+    address: "Calle 8 # 6-52 B/Jorge E. Gaitán",
+    color: "#059669",
+    zones: ["Casco urbano"],
+  },
+  {
+    city: "Caloto",
+    lat: 3.035,
+    lng: -76.408,
+    address: "Calle 18 # 4-30 B/La Unión",
+    color: "#14b8a6",
+    zones: ["Casco urbano"],
+  },
+  {
+    city: "Santander de Quilichao",
+    lat: 3.0089,
+    lng: -76.4855,
+    address: "Calle 4 # 14-37",
+    color: "#7c3aed",
+    zones: ["Centro y barrios principales"],
+  },
+]
 
 export function Locations() {
   return (
-    <section className="py-12 bg-gradient-to-b from-gray-50 to-gray-100">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-heading bg-clip-text text-transparent bg-gradient-to-r from-raicesRed to-raicesBlue">
-            Nuestras Sedes
+    <section className="relative overflow-hidden bg-[#0a1024] py-20" id="cobertura">
+      <div className="container relative z-10 mx-auto px-4">
+        <div className="mb-12 text-center">
+          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-1.5 text-sm font-semibold text-white backdrop-blur">
+            <MapPin className="h-4 w-4 text-raicesRed" />
+            Cobertura de fibra óptica
+          </span>
+          <h2 className="text-balance text-3xl font-bold text-white md:text-4xl font-heading">
+            ¿Dónde tenemos cobertura?
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-raicesRed to-raicesBlue mx-auto mb-4 rounded-full"></div>
-          <p className="text-lg text-gray-600 max-w-xl mx-auto">
-            Estamos presentes en múltiples ubicaciones para brindarte el mejor servicio
+          <p className="mx-auto mt-3 max-w-xl text-pretty text-white/70">
+            Llevamos fibra óptica al Valle del Cauca y el Norte del Cauca. Explora el mapa y descubre las zonas donde ya
+            estamos presentes.
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
-              <div className="bg-gradient-to-r from-raicesRed/10 to-raicesRed/5 p-3">
-                <div className="flex items-center">
-                  <div className="bg-white p-2 rounded-full shadow-sm">
-                    <Building2 className="h-5 w-5 text-raicesRed" />
-                  </div>
-                  <h4 className="font-semibold text-gray-800 text-lg ml-2">Cali</h4>
-                </div>
-              </div>
-              <div className="p-4">
-                <div className="flex items-start">
-                  <div className="w-full">
-                    <p className="text-gray-600 font-medium text-sm uppercase tracking-wider mb-2">Cobertura en:</p>
-                    <ul className="space-y-1 text-gray-600 text-sm">
-                      <li className="flex items-center">
-                        <span className="w-1.5 h-1.5 bg-raicesRed rounded-full mr-2"></span>Ciudad Pacífica
-                      </li>
-                      <li className="flex items-center">
-                        <span className="w-1.5 h-1.5 bg-raicesRed rounded-full mr-2"></span>Bochalema
-                      </li>
-                      <li className="flex items-center">
-                        <span className="w-1.5 h-1.5 bg-raicesRed rounded-full mr-2"></span>Cachipay
-                      </li>
-                      <li className="flex items-center">
-                        <span className="w-1.5 h-1.5 bg-raicesRed rounded-full mr-2"></span>Ciudad Meléndez
-                      </li>
-                      <li className="flex items-center">
-                        <span className="w-1.5 h-1.5 bg-raicesRed rounded-full mr-2"></span>Vivero
-                      </li>
-                    </ul>
-                    <div className="mt-3 pt-3 border-t border-gray-100 flex items-center text-sm text-gray-500">
-                      <MapPin className="h-4 w-4 text-raicesRed mr-1 flex-shrink-0" />
-                      <span>Carrera 121# 42-93</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div className="grid gap-8 lg:grid-cols-5">
+          {/* Map */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="lg:col-span-3"
+          >
+            <RegionMap points={points} />
+          </motion.div>
 
-            <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
-              <div className="bg-gradient-to-r from-raicesBlue/10 to-raicesBlue/5 p-3">
-                <div className="flex items-center">
-                  <div className="bg-white p-2 rounded-full shadow-sm">
-                    <Home className="h-5 w-5 text-raicesBlue" />
+          {/* City list */}
+          <div className="lg:col-span-2">
+            <div className="grid gap-3">
+              {points.map((p, i) => (
+                <motion.div
+                  key={p.city}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.06 }}
+                  className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur transition-colors hover:bg-white/10"
+                >
+                  <span
+                    className="mt-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-white shadow"
+                    style={{ background: p.color }}
+                  >
+                    <MapPin className="h-4 w-4" />
+                  </span>
+                  <div>
+                    <h3 className="font-heading text-base font-bold text-white">{p.city}</h3>
+                    <p className="text-sm text-white/60">{p.zones.join(" · ")}</p>
+                    {p.address && <p className="mt-0.5 text-xs text-white/40">{p.address}</p>}
                   </div>
-                  <h4 className="font-semibold text-gray-800 text-lg ml-2">Jamundí</h4>
-                </div>
-              </div>
-              <div className="p-4">
-                <div className="flex items-start">
-                  <div className="w-full">
-                    <p className="text-gray-600 font-medium text-sm uppercase tracking-wider mb-2">Cobertura en:</p>
-                    <ul className="space-y-1 text-gray-600 text-sm">
-                      <li className="flex items-center">
-                        <span className="w-1.5 h-1.5 bg-raicesBlue rounded-full mr-2"></span>El Castillo
-                      </li>
-                      <li className="flex items-center">
-                        <span className="w-1.5 h-1.5 bg-raicesBlue rounded-full mr-2"></span>Ciudad Country
-                      </li>
-                      <li className="flex items-center">
-                        <span className="w-1.5 h-1.5 bg-raicesBlue rounded-full mr-2"></span>Sachamate
-                      </li>
-                      <li className="flex items-center">
-                        <span className="w-1.5 h-1.5 bg-raicesBlue rounded-full mr-2"></span>Parque Natura
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
-              <div className="bg-gradient-to-r from-green-500/10 to-green-500/5 p-3">
-                <div className="flex items-center">
-                  <div className="bg-white p-2 rounded-full shadow-sm">
-                    <Trees className="h-5 w-5 text-green-500" />
-                  </div>
-                  <h4 className="font-semibold text-gray-800 text-lg ml-2">Puerto Tejada</h4>
-                </div>
-              </div>
-              <div className="p-4">
-                <div className="flex items-start">
-                  <div className="w-full">
-                    <p className="text-gray-600 font-medium text-sm uppercase tracking-wider mb-2">Cobertura en:</p>
-                    <ul className="space-y-1 text-gray-600 text-sm">
-                      <li className="flex items-center">
-                        <span className="w-1.5 h-1.5 bg-green-500 rounded-full mr-2"></span>Ciudad del Sur
-                      </li>
-                    </ul>
-                    <div className="mt-3 pt-3 border-t border-gray-100 flex items-center text-sm text-gray-500">
-                      <MapPin className="h-4 w-4 text-green-500 mr-1 flex-shrink-0" />
-                      <span>Calle 86A #22-03 esquina</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
-              <div className="bg-gradient-to-r from-amber-500/10 to-amber-500/5 p-3">
-                <div className="flex items-center">
-                  <div className="bg-white p-2 rounded-full shadow-sm">
-                    <Landmark className="h-5 w-5 text-amber-500" />
-                  </div>
-                  <h4 className="font-semibold text-gray-800 text-lg ml-2">Norte del Cauca</h4>
-                </div>
-              </div>
-              <div className="p-4">
-                <div className="flex items-start">
-                  <div className="w-full">
-                    <ul className="space-y-2 text-gray-600 text-sm">
-                      <li className="flex items-start">
-                        <span className="w-1.5 h-1.5 bg-amber-500 rounded-full mr-2 mt-1.5"></span>
-                        <div>
-                          <span className="font-medium">Guachené</span>
-                          <p className="text-xs text-gray-500">Calle 8# 6-52 B/Jorge E. Gaitan</p>
-                        </div>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="w-1.5 h-1.5 bg-amber-500 rounded-full mr-2 mt-1.5"></span>
-                        <div>
-                          <span className="font-medium">Caloto</span>
-                          <p className="text-xs text-gray-500">Calle 18 # 4-30 B/La unión</p>
-                        </div>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="w-1.5 h-1.5 bg-amber-500 rounded-full mr-2 mt-1.5"></span>
-                        <div>
-                          <span className="font-medium">Santander de Quilichao</span>
-                          <p className="text-xs text-gray-500">Calle 4 # 14-37</p>
-                        </div>
-                      </li>
-
-                    </ul>
-                  </div>
-                </div>
-              </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>
