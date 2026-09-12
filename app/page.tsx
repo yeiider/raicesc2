@@ -1,5 +1,5 @@
 import { Header } from "@/components/header"
-import { Carousel } from "@/components/carousel"
+import { VideoBanner } from "@/components/video-banner"
 import { ServicesShowcase } from "@/components/services-showcase"
 import { Plans } from "@/components/plans"
 import { ConnectivityBenefits } from "@/components/connectivity-benefits"
@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <main className="min-h-screen flex flex-col">
       <Header />
-      <Carousel />
+      <VideoBanner />
       <ServicesShowcase />
       <Plans />
       <ConnectivityBenefits />
