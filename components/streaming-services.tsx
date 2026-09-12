@@ -73,7 +73,7 @@ export function StreamingServices() {
               Televisión · Paquete Flex
             </span>
             <h2 className="text-balance font-heading text-3xl font-extrabold text-gray-900 md:text-4xl">
-              Una conexión que va más allá
+              Televisión con Paquete Flex
             </h2>
             <p className="mt-4 text-pretty leading-relaxed text-gray-600">
               Nuestra oferta de servicios es variada y está sujeta a cobertura. Con Raíces disfruta de internet,
