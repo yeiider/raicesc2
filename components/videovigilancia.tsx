@@ -3,15 +3,8 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { Camera, ShieldCheck, Bell, Cloud, Eye, Smartphone } from "lucide-react"
+import { ShieldCheck, Eye } from "lucide-react"
 import { getWhatsAppLink } from "@/utils/whatsapp-link"
-
-const features = [
-  { icon: Camera, title: "Cámaras HD", desc: "Imagen nítida de día y de noche con visión infrarroja." },
-  { icon: Smartphone, title: "Desde tu celular", desc: "Mira tu hogar o negocio en vivo desde cualquier lugar." },
-  { icon: Bell, title: "Alertas inteligentes", desc: "Notificaciones instantáneas ante cualquier movimiento." },
-  { icon: Cloud, title: "Grabación en la nube", desc: "Tus grabaciones seguras y disponibles cuando las necesites." },
-]
 
 function useLiveClock() {
   const [now, setNow] = useState("--:--:--")
@@ -82,15 +75,15 @@ export function Videovigilancia() {
         />
       </div>
 
-      <div className="container relative z-10 mx-auto px-4">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
+      <div className="container relative z-10 mx-auto px-4 py-4">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
           {/* Copy */}
-          <div className="text-center lg:text-left">
+          <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
             <motion.span
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-semibold backdrop-blur"
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-semibold backdrop-blur"
             >
               <ShieldCheck className="h-4 w-4 text-raicesRed" />
               Nuevo · Internet + Seguridad
@@ -101,15 +94,15 @@ export function Videovigilancia() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="text-balance font-heading text-4xl font-extrabold leading-tight md:text-5xl"
+              className="mt-6 text-balance font-heading text-4xl font-extrabold leading-[1.15] md:text-5xl md:leading-[1.12]"
             >
               Videovigilancia
-              <span className="block bg-gradient-to-r from-raicesRed to-sky-400 bg-clip-text text-transparent">
+              <span className="mt-2 block bg-gradient-to-r from-raicesRed to-sky-400 bg-clip-text text-transparent">
                 Todos tenemos algo que cuidar
               </span>
             </motion.h2>
 
-            <p className="mx-auto mt-5 max-w-lg text-pretty text-white/75 lg:mx-0">
+            <p className="mt-6 max-w-md text-pretty leading-relaxed text-white/75">
               Protege lo que más importa con nuestro sistema de cámaras inteligentes conectado a tu internet de fibra
               óptica. Monitorea tu hogar o negocio en tiempo real, con grabación en la nube y alertas al instante.
             </p>
@@ -205,30 +198,6 @@ export function Videovigilancia() {
             </div>
           </div>
           </motion.div>
-        </div>
-
-        {/* Feature grid */}
-        <div className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-4">
-          {features.map((f, i) => {
-            const Icon = f.icon
-            return (
-              <motion.div
-                key={f.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-                whileHover={{ y: -6 }}
-                className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur transition-colors hover:bg-white/10"
-              >
-                <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-raicesRed to-raicesBlue shadow-md">
-                  <Icon className="h-5 w-5 text-white" />
-                </div>
-                <h3 className="font-bold">{f.title}</h3>
-                <p className="mt-1 text-sm text-white/60">{f.desc}</p>
-              </motion.div>
-            )
-          })}
         </div>
       </div>
     </section>
