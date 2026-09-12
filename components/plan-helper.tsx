@@ -22,7 +22,7 @@ const profiles = [
     desc: "3 a 5 dispositivos, videollamadas y streaming en HD simultáneo.",
     plan: "Plan Premium",
     speed: "500 Megas",
-    accent: "from-raicesRed to-orange-500",
+    accent: "from-raicesRed to-red-500",
     recommended: true,
   },
   {
@@ -32,7 +32,7 @@ const profiles = [
     desc: "Juegos online, transmisiones en vivo y descargas pesadas.",
     plan: "Plan Oro",
     speed: "900 Megas",
-    accent: "from-amber-400 to-yellow-500",
+    accent: "from-sky-400 to-raicesBlue",
   },
   {
     id: "business",
@@ -41,7 +41,7 @@ const profiles = [
     desc: "Muchos dispositivos conectados y alta demanda todo el día.",
     plan: "Plan Oro",
     speed: "900 Megas",
-    accent: "from-emerald-400 to-teal-500",
+    accent: "from-raicesBlue to-sky-500",
   },
 ]
 
@@ -50,16 +50,16 @@ export function PlanHelper() {
   const active = profiles.find((p) => p.id === selected)!
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white to-sky-50 py-20" id="ayuda-plan">
+    <section className="relative overflow-hidden bg-[#0a1024] py-20" id="ayuda-plan">
       <div className="container mx-auto px-4">
         <div className="mb-12 text-center">
-          <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-raicesBlue/10 px-5 py-1.5 text-sm font-semibold text-raicesBlue">
+          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-1.5 text-sm font-semibold text-white backdrop-blur">
             Guía rápida
           </span>
-          <h2 className="text-balance text-3xl font-bold text-foreground md:text-4xl font-heading">
+          <h2 className="text-balance text-3xl font-bold text-white md:text-4xl font-heading">
             ¿Cómo saber qué plan necesito?
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-pretty text-muted-foreground">
+          <p className="mx-auto mt-3 max-w-xl text-pretty text-white/70">
             Elige el perfil que más se parece a tu hogar y te recomendamos el plan ideal.
           </p>
         </div>
@@ -74,10 +74,10 @@ export function PlanHelper() {
                 <button
                   key={p.id}
                   onClick={() => setSelected(p.id)}
-                  className={`relative flex flex-col items-start rounded-2xl border p-5 text-left transition-all ${
+                  className={`relative flex flex-col items-start rounded-2xl border p-5 text-left backdrop-blur transition-all ${
                     isActive
-                      ? "border-transparent shadow-xl"
-                      : "border-gray-200 bg-white hover:border-raicesBlue/40 hover:shadow-md"
+                      ? "border-white/30 bg-white/10 shadow-xl"
+                      : "border-white/10 bg-white/5 hover:border-raicesBlue/40 hover:bg-white/10"
                   }`}
                 >
                   {isActive && (
@@ -91,8 +91,8 @@ export function PlanHelper() {
                   >
                     <Icon className="h-5 w-5 text-white" />
                   </div>
-                  <h3 className="relative font-bold text-foreground">{p.title}</h3>
-                  <p className="relative mt-1 text-sm text-muted-foreground">{p.desc}</p>
+                  <h3 className="relative font-bold text-white">{p.title}</h3>
+                  <p className="relative mt-1 text-sm text-white/60">{p.desc}</p>
                 </button>
               )
             })}

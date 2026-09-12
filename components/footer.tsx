@@ -4,7 +4,7 @@ import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, ArrowRight } from "
 
 export function Footer() {
   return (
-    <footer className="bg-blue-950 text-white pt-10 pb-6 relative overflow-hidden">
+    <footer className="bg-[#0a1024] text-white pt-10 pb-6 relative overflow-hidden border-t border-white/10">
       {/* Elementos decorativos sutiles */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-5 pointer-events-none">
         <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-white blur-3xl"></div>

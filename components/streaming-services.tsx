@@ -10,24 +10,24 @@ const services = [
   { name: "Paramount+", color: "#0064ff" },
   { name: "Prime Video", color: "#00a8e1" },
   { name: "Max", color: "#7b2ff7" },
-  { name: "WIN+", color: "#ff6a00" },
+  { name: "WIN+", color: "#1e56b0" },
 ]
 
 export function StreamingServices() {
   return (
     <>
       {/* Otros servicios para consultar */}
-      <section className="bg-gray-50 py-16" id="otros-servicios">
+      <section className="bg-[#0a1024] py-16" id="otros-servicios">
         <div className="container mx-auto px-4">
           <div className="mx-auto mb-10 max-w-2xl text-center">
-            <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-raicesRed/20 bg-raicesRed/5 px-4 py-1.5 text-sm font-semibold text-raicesRed">
-              <MessageCircle className="h-4 w-4" />
+            <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-semibold text-white backdrop-blur">
+              <MessageCircle className="h-4 w-4 text-raicesRed" />
               Otros servicios
             </span>
-            <h2 className="text-balance font-heading text-3xl font-extrabold text-gray-900 md:text-4xl">
+            <h2 className="text-balance font-heading text-3xl font-extrabold text-white md:text-4xl">
               ¿Buscas Netflix, Disney+ y más?
             </h2>
-            <p className="mt-3 text-pretty text-gray-600">
+            <p className="mt-3 text-pretty text-white/70">
               Escríbenos y consulta la disponibilidad de tus plataformas favoritas para combinarlas con tu plan de
               internet Raíces.
             </p>
@@ -47,7 +47,7 @@ export function StreamingServices() {
                     "_blank",
                   )
                 }
-                className="group flex flex-col items-center justify-center gap-3 rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
+                className="group flex flex-col items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur transition-all hover:-translate-y-1 hover:bg-white/10"
               >
                 <span
                   className="flex h-12 w-12 items-center justify-center rounded-xl text-lg font-black text-white transition-transform group-hover:scale-110"
@@ -55,8 +55,8 @@ export function StreamingServices() {
                 >
                   {service.name.charAt(0)}
                 </span>
-                <span className="font-heading text-base font-bold text-gray-900">{service.name}</span>
-                <span className="text-xs font-medium text-raicesBlue">Consultar</span>
+                <span className="font-heading text-base font-bold text-white">{service.name}</span>
+                <span className="text-xs font-medium text-sky-300">Consultar</span>
               </motion.button>
             ))}
           </div>

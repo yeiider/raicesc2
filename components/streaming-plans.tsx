@@ -51,17 +51,17 @@ const plans = [
 
 export function StreamingPlans() {
   return (
-    <section className="bg-white py-16" id="planes-streaming">
+    <section className="bg-[#0a1024] py-16" id="planes-streaming">
       <div className="container mx-auto px-4">
         <div className="mx-auto mb-12 max-w-2xl text-center">
-          <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-raicesBlue/20 bg-raicesBlue/5 px-4 py-1.5 text-sm font-semibold text-raicesBlue">
-            <Sparkles className="h-4 w-4" />
+          <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-semibold text-white backdrop-blur">
+            <Sparkles className="h-4 w-4 text-sky-300" />
             Planes Flex de streaming
           </span>
-          <h2 className="text-balance font-heading text-3xl font-extrabold text-gray-900 md:text-4xl">
+          <h2 className="text-balance font-heading text-3xl font-extrabold text-white md:text-4xl">
             Elige cómo quieres ver
           </h2>
-          <p className="mt-3 text-pretty text-gray-600">
+          <p className="mt-3 text-pretty text-white/70">
             Contamos con planes DGO Flex y NUPLIN para que disfrutes tus canales, series y películas favoritas donde
             quieras.
           </p>
@@ -79,8 +79,10 @@ export function StreamingPlans() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
                 whileHover={{ y: -8 }}
-                className={`relative flex flex-col overflow-hidden rounded-3xl border bg-white p-6 shadow-md transition-shadow hover:shadow-xl ${
-                  plan.featured ? "border-raicesBlue/40 ring-2 ring-raicesBlue/15" : "border-gray-100"
+                className={`relative flex flex-col overflow-hidden rounded-3xl border p-6 backdrop-blur transition-colors ${
+                  plan.featured
+                    ? "border-raicesBlue/50 bg-white/10 ring-2 ring-raicesBlue/20"
+                    : "border-white/10 bg-white/5 hover:bg-white/10"
                 }`}
               >
                 {plan.featured && (
@@ -97,12 +99,12 @@ export function StreamingPlans() {
                   <Icon className={`h-6 w-6 ${isBlue ? "text-raicesBlue" : "text-raicesRed"}`} />
                 </div>
 
-                <h3 className="font-heading text-xl font-bold text-gray-900">{plan.name}</h3>
-                <p className="mt-1 text-sm text-gray-500">{plan.tagline}</p>
+                <h3 className="font-heading text-xl font-bold text-white">{plan.name}</h3>
+                <p className="mt-1 text-sm text-white/60">{plan.tagline}</p>
 
                 <ul className="mb-6 mt-4 flex-grow space-y-2.5">
                   {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2 text-sm text-gray-600">
+                    <li key={feature} className="flex items-start gap-2 text-sm text-white/70">
                       <Check className={`mt-0.5 h-4 w-4 flex-shrink-0 ${isBlue ? "text-raicesBlue" : "text-raicesRed"}`} />
                       {feature}
                     </li>

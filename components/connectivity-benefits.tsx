@@ -23,23 +23,23 @@ export function ConnectivityBenefits() {
       icon: <Clock className="h-6 w-6 text-white" />,
       title: "Soporte 24/7",
       description: "Asistencia técnica disponible cuando la necesites",
-      color: "from-purple-500 to-purple-700",
+      color: "from-raicesRed to-red-600",
     },
     {
       icon: <Shield className="h-6 w-6 text-white" />,
       title: "Sin Cláusula de Permanencia",
       description: "Libertad total para cancelar cuando quieras, sin penalizaciones",
-      color: "from-green-500 to-green-700",
+      color: "from-raicesBlue to-blue-600",
     },
   ]
 
   return (
-    <section className="py-12 bg-white">
+    <section className="py-12 bg-[#0a1024]">
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold mb-4 font-heading">La Mejor Conectividad</h2>
+          <h2 className="text-3xl font-bold mb-4 font-heading text-white">La Mejor Conectividad</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-raicesRed to-raicesBlue mx-auto mb-4 rounded-full"></div>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-white/70 max-w-2xl mx-auto">
             Descubre por qué nuestros servicios marcan la diferencia
           </p>
         </div>
@@ -59,8 +59,8 @@ export function ConnectivityBenefits() {
               >
                 {benefit.icon}
               </div>
-              <h3 className="text-lg font-bold mb-2">{benefit.title}</h3>
-              <p className="text-gray-600 text-sm">{benefit.description}</p>
+              <h3 className="text-lg font-bold mb-2 text-white">{benefit.title}</h3>
+              <p className="text-white/60 text-sm">{benefit.description}</p>
             </motion.div>
           ))}
         </div>

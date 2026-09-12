@@ -8,7 +8,7 @@ import type { CoveragePoint } from "@/components/region-map"
 const RegionMap = dynamic(() => import("@/components/region-map"), {
   ssr: false,
   loading: () => (
-    <div className="flex h-[440px] w-full items-center justify-center rounded-3xl border border-gray-200 bg-sky-50 text-muted-foreground md:h-[540px]">
+    <div className="flex h-[440px] w-full items-center justify-center rounded-3xl border border-white/10 bg-white/5 text-white/60 md:h-[540px]">
       Cargando mapa…
     </div>
   ),
@@ -51,7 +51,7 @@ const points: CoveragePoint[] = [
     lat: 3.035,
     lng: -76.408,
     address: "Calle 18 # 4-30 B/La Unión",
-    color: "#d97706",
+    color: "#14b8a6",
     zones: ["Casco urbano"],
   },
   {
@@ -66,17 +66,17 @@ const points: CoveragePoint[] = [
 
 export function Locations() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-sky-50 to-white py-20" id="cobertura">
+    <section className="relative overflow-hidden bg-[#0a1024] py-20" id="cobertura">
       <div className="container relative z-10 mx-auto px-4">
         <div className="mb-12 text-center">
-          <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-raicesRed/10 px-5 py-1.5 text-sm font-semibold text-raicesRed">
-            <MapPin className="h-4 w-4" />
+          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-1.5 text-sm font-semibold text-white backdrop-blur">
+            <MapPin className="h-4 w-4 text-raicesRed" />
             Cobertura de fibra óptica
           </span>
-          <h2 className="text-balance text-3xl font-bold text-foreground md:text-4xl font-heading">
+          <h2 className="text-balance text-3xl font-bold text-white md:text-4xl font-heading">
             ¿Dónde tenemos cobertura?
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-pretty text-muted-foreground">
+          <p className="mx-auto mt-3 max-w-xl text-pretty text-white/70">
             Llevamos fibra óptica al Valle del Cauca y el Norte del Cauca. Explora el mapa y descubre las zonas donde ya
             estamos presentes.
           </p>
@@ -104,7 +104,7 @@ export function Locations() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.06 }}
-                  className="flex items-start gap-3 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
+                  className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur transition-colors hover:bg-white/10"
                 >
                   <span
                     className="mt-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-white shadow"
@@ -113,9 +113,9 @@ export function Locations() {
                     <MapPin className="h-4 w-4" />
                   </span>
                   <div>
-                    <h3 className="font-heading text-base font-bold text-foreground">{p.city}</h3>
-                    <p className="text-sm text-muted-foreground">{p.zones.join(" · ")}</p>
-                    {p.address && <p className="mt-0.5 text-xs text-gray-400">{p.address}</p>}
+                    <h3 className="font-heading text-base font-bold text-white">{p.city}</h3>
+                    <p className="text-sm text-white/60">{p.zones.join(" · ")}</p>
+                    {p.address && <p className="mt-0.5 text-xs text-white/40">{p.address}</p>}
                   </div>
                 </motion.div>
               ))}

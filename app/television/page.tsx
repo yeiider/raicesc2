@@ -16,11 +16,11 @@ const heroHighlights = [
 
 export default function TelevisionPage() {
   return (
-    <main className="flex min-h-screen flex-col">
+    <main className="flex min-h-screen flex-col bg-[#0a1024]">
       <Header />
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#0a1f4d] via-raicesBlue to-[#0a1f4d] py-20 md:py-28">
+      <section className="relative overflow-hidden bg-[#0a1024] py-20 md:py-28">
         <div className="pointer-events-none absolute -left-20 top-10 h-72 w-72 rounded-full bg-raicesRed/25 blur-3xl" />
         <div className="pointer-events-none absolute -right-16 bottom-0 h-80 w-80 rounded-full bg-sky-400/20 blur-3xl" />
 
@@ -31,7 +31,7 @@ export default function TelevisionPage() {
               Streaming Raíces
             </span>
             <h1 className="text-balance font-heading text-4xl font-black leading-tight text-white drop-shadow md:text-6xl">
-              Tu entretenimiento, <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-orange-300">sin límites</span>
+              Tu entretenimiento, <span className="text-transparent bg-clip-text bg-gradient-to-r from-raicesRed to-sky-400">sin límites</span>
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-sky-100">
               Con Raíces disfrutas de streaming, televisión y las plataformas que más te gustan. Contamos con planes DGO

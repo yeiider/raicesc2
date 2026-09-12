@@ -17,24 +17,24 @@ export function SupportSection() {
       title: "Chat en Línea",
       description: "Chatea con nuestros agentes en tiempo real",
       contact: "WhatsApp y Chat Web",
-      color: "from-green-500 to-green-600",
+      color: "from-raicesBlue to-blue-600",
     },
     {
       icon: <Clock className="h-5 w-5 text-white" />,
       title: "Horario de Atención",
       description: "Estamos para servirte",
       contact: "Lun-Vie: 7AM-5PM | Sáb: 7AM-12PM",
-      color: "from-blue-500 to-blue-600",
+      color: "from-sky-500 to-raicesBlue",
     },
   ]
 
   return (
-    <section className="py-10 bg-white">
+    <section className="py-10 bg-[#0a1024]">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold mb-2 font-heading">Soporte y Atención al Cliente</h2>
+          <h2 className="text-2xl font-bold mb-2 font-heading text-white">Soporte y Atención al Cliente</h2>
           <div className="w-16 h-1 bg-gradient-to-r from-raicesRed to-raicesBlue mx-auto mb-2 rounded-full"></div>
-          <p className="text-gray-600 max-w-2xl mx-auto">Estamos aquí para ayudarte a través de múltiples canales</p>
+          <p className="text-white/70 max-w-2xl mx-auto">Estamos aquí para ayudarte a través de múltiples canales</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
@@ -45,7 +45,7 @@ export function SupportSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 p-5"
+              className="bg-white/5 rounded-lg border border-white/10 backdrop-blur hover:bg-white/10 transition-all duration-300 p-5"
             >
               <div className="flex items-center mb-3">
                 <div
@@ -53,10 +53,10 @@ export function SupportSection() {
                 >
                   {channel.icon}
                 </div>
-                <h3 className="font-semibold">{channel.title}</h3>
+                <h3 className="font-semibold text-white">{channel.title}</h3>
               </div>
-              <p className="text-gray-600 text-sm mb-3">{channel.description}</p>
-              <div className="text-gray-700 font-medium text-sm">{channel.contact}</div>
+              <p className="text-white/60 text-sm mb-3">{channel.description}</p>
+              <div className="text-white/80 font-medium text-sm">{channel.contact}</div>
             </motion.div>
           ))}
         </div>

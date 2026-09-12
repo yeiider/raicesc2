@@ -26,7 +26,7 @@ const plans = [
     popular: true,
     features: ["Televisión en HD", "Soporte especializado", "Sin permanencia", "WiFi optimizado"],
     icon: TrendingUp,
-    accent: "from-raicesRed to-orange-500",
+    accent: "from-raicesRed to-red-500",
     glow: "bg-raicesRed/30",
   },
   {
@@ -37,8 +37,8 @@ const plans = [
     price: 105000,
     features: ["Televisión en HD", "Soporte especializado", "Sin permanencia", "Ideal para gamers"],
     icon: Sparkles,
-    accent: "from-amber-400 to-yellow-500",
-    glow: "bg-amber-400/30",
+    accent: "from-sky-400 to-raicesBlue",
+    glow: "bg-sky-400/30",
   },
 ]
 
@@ -85,7 +85,7 @@ export function Plans() {
       <div className="container relative z-10 mx-auto px-4">
         <div className="mb-12 text-center">
           <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-1.5 text-sm font-semibold text-white backdrop-blur">
-            <Sparkles className="h-4 w-4 text-amber-300" />
+            <Sparkles className="h-4 w-4 text-sky-300" />
             Oferta por tiempo limitado
           </span>
           <h2 className="text-balance text-3xl font-bold text-white md:text-5xl font-heading">
@@ -120,7 +120,7 @@ export function Plans() {
                 />
 
                 {plan.popular && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-raicesRed to-orange-500 px-4 py-1 text-xs font-bold text-white shadow-lg">
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-raicesRed to-red-500 px-4 py-1 text-xs font-bold text-white shadow-lg">
                     MÁS POPULAR
                   </span>
                 )}
