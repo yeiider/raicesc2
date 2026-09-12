@@ -113,9 +113,9 @@ export function AppDownloadButton() {
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-label="Descargar la App Raíces CAM"
-        className="group flex items-center gap-2 rounded-full bg-gradient-to-r from-raicesRed to-raicesBlue py-3 pl-3 pr-5 font-heading text-sm font-bold text-white shadow-lg transition-transform hover:scale-[1.04]"
+        className="group flex items-center gap-2 rounded-full bg-white py-3 pl-3 pr-5 font-heading text-sm font-bold text-[#0a1024] shadow-lg ring-1 ring-black/5 transition-transform hover:scale-[1.04]"
       >
-        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/15">
+        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-raicesRed to-raicesBlue text-white">
           <Smartphone className="h-5 w-5" />
         </span>
         Descarga la app

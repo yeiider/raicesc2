@@ -39,7 +39,7 @@ const money = (value: number) => {
 
 export function LimitedOffers() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-raicesBlue to-[#0f2f6b] py-16" id="ofertas">
+    <section className="relative overflow-hidden bg-[#0a1024] py-16" id="ofertas">
       {/* glow accents */}
       <div className="pointer-events-none absolute -left-20 top-10 h-72 w-72 rounded-full bg-raicesRed/20 blur-3xl" />
       <div className="pointer-events-none absolute -right-16 bottom-0 h-72 w-72 rounded-full bg-sky-400/20 blur-3xl" />
