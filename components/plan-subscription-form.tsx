@@ -6,6 +6,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Checkbox } from "@/components/ui/checkbox"
 import { Dialog, DialogContent } from "@/components/ui/dialog"
 import { CheckCircle, Loader2, User, Mail, Phone, MapPin, Building2, Sparkles } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
@@ -33,6 +34,7 @@ export function PlanSubscriptionForm({ isOpen, onClose, selectedPlan }: PlanSubs
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [error, setError] = useState("")
+  const [acceptedDataPolicy, setAcceptedDataPolicy] = useState(false)
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({
@@ -43,6 +45,10 @@ export function PlanSubscriptionForm({ isOpen, onClose, selectedPlan }: PlanSubs
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!acceptedDataPolicy) {
+      setError("Debes autorizar el tratamiento de tus datos personales para continuar.")
+      return
+    }
     setIsSubmitting(true)
     setError("")
 
@@ -256,6 +262,27 @@ export function PlanSubscriptionForm({ isOpen, onClose, selectedPlan }: PlanSubs
                       onChange={(e) => handleInputChange("ciudad", e.target.value)}
                       className="border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
                     />
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <Checkbox
+                      id="acepta-datos"
+                      checked={acceptedDataPolicy}
+                      onCheckedChange={(checked) => setAcceptedDataPolicy(checked === true)}
+                      className="mt-0.5"
+                    />
+                    <Label htmlFor="acepta-datos" className="text-sm font-normal text-gray-700 leading-relaxed">
+                      Autorizo a Global Raíces S.A.S el tratamiento de mis datos personales conforme a la{" "}
+                      <a
+                        href="/tratamiento-de-datos"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 underline hover:text-blue-700"
+                      >
+                        Política de Tratamiento de Datos
+                      </a>
+                      . *
+                    </Label>
                   </div>
 
                   {error && (
