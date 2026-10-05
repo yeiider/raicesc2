@@ -554,7 +554,12 @@ export function CoverageForm({ onClose }: CoverageFormProps) {
                             className={`text-sm font-normal ${formErrors.terms ? "text-red-500" : "text-gray-700"}`}
                           >
                             Acepto la{" "}
-                            <a href="#" className="text-raicesBlue hover:underline">
+                            <a
+                              href="/tratamiento-de-datos"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-raicesBlue hover:underline"
+                            >
                               política de tratamiento de datos personales
                             </a>
                           </Label>

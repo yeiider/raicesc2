@@ -81,6 +81,15 @@ export function Footer() {
                   Políticas de Privacidad
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/tratamiento-de-datos"
+                  className="text-gray-300 hover:text-white transition-colors flex items-center"
+                >
+                  <ArrowRight className="h-3 w-3 mr-1" />
+                  Tratamiento de Datos
+                </Link>
+              </li>
             </ul>
           </div>
 

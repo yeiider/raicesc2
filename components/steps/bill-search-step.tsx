@@ -129,6 +129,20 @@ export default function BillSearchStep({ onSearch, isLoading }: BillSearchStepPr
                         </span>
                     )}
                 </Button>
+
+                <p className="text-xs text-gray-500 text-center leading-relaxed">
+                    Al consultar y pagar tu factura autorizas el tratamiento de tus datos personales conforme a nuestra{" "}
+                    <a
+                        href="/tratamiento-de-datos"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#2d4594] underline hover:text-[#1e3276]"
+                    >
+                        Política de Tratamiento de Datos
+                    </a>
+                    . Los datos de tu tarjeta o cuenta bancaria son procesados directamente por Wompi y no son almacenados por
+                    Global Raíces.
+                </p>
             </form>
 
             {isLoading && (

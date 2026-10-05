@@ -6,6 +6,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Checkbox } from "@/components/ui/checkbox"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { CheckCircle, Loader2, ArrowLeft } from "lucide-react"
@@ -53,6 +54,7 @@ export function RegistroForm() {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [isSubmitted, setIsSubmitted] = useState(false)
     const [error, setError] = useState("")
+    const [acceptedDataPolicy, setAcceptedDataPolicy] = useState(false)
 
     const handleInputChange = (field: keyof FormData, value: string) => {
         setFormData((prev) => ({
@@ -63,6 +65,10 @@ export function RegistroForm() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
+        if (!acceptedDataPolicy) {
+            setError("Debes autorizar el tratamiento de tus datos personales para continuar.")
+            return
+        }
         setIsSubmitting(true)
         setError("")
 
@@ -74,7 +80,12 @@ export function RegistroForm() {
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify(formData),
+                    body: JSON.stringify({
+                        ...formData,
+                        autorizacionTratamientoDatos: true,
+                        fechaAutorizacion: new Date().toISOString(),
+                        politicaTratamientoDatos: "/tratamiento-de-datos",
+                    }),
                 },
             )
 
@@ -418,6 +429,27 @@ export function RegistroForm() {
                                     />
                                 </div>
                             </div>
+                        </div>
+
+                        <div className="flex items-start gap-3 border-t pt-6">
+                            <Checkbox
+                                id="acepta-datos"
+                                checked={acceptedDataPolicy}
+                                onCheckedChange={(checked) => setAcceptedDataPolicy(checked === true)}
+                                className="mt-0.5"
+                            />
+                            <Label htmlFor="acepta-datos" className="text-sm font-normal text-gray-700 leading-relaxed">
+                                Autorizo de manera previa, expresa e informada a Global Raíces S.A.S el tratamiento de mis
+                                datos personales conforme a la{" "}
+                                <Link
+                                    href="/tratamiento-de-datos"
+                                    target="_blank"
+                                    className="text-blue-600 underline hover:text-blue-700"
+                                >
+                                    Política de Tratamiento de Datos
+                                </Link>
+                                . *
+                            </Label>
                         </div>
 
                         {error && (
