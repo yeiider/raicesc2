@@ -5,6 +5,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 import { FloatingTrialButton } from "@/components/floating-trial-button"
+import { CookieConsent } from "@/components/cookie-consent"
 
 // Properly configure Montserrat font
 const montserrat = Montserrat({
@@ -48,6 +49,7 @@ export default function RootLayout({
         >
           {children}
           <WhatsAppButton />
+          <CookieConsent />
             { /*<FloatingTrialButton />*/ }
         </ThemeProvider>
       </body>
