@@ -86,7 +86,7 @@ export default function TransactionSummary({ transaction, isLoading, error }: Tr
     }
 
     return (
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl mx-auto mt-28 md:mt-32 mb-12 px-4">
 
             <div className="bg-white rounded-lg shadow-lg overflow-hidden p-6">
                 {isLoading ? (
