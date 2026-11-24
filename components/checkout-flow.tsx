@@ -292,7 +292,7 @@ export default function CheckoutFlow() {
     }
 
     return (
-        <div className="max-w-3xl mx-auto mt-10 mb-10">
+        <div className="max-w-3xl mx-auto mt-28 md:mt-32 mb-12 px-4">
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                 <CheckoutStepper currentStep={currentStep} />
 

@@ -52,12 +52,6 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/ofertas" className="text-gray-300 hover:text-white transition-colors flex items-center">
-                  <ArrowRight className="h-3 w-3 mr-1" />
-                  Ofertas
-                </Link>
-              </li>
-              <li>
                 <Link href="/soporte" className="text-gray-300 hover:text-white transition-colors flex items-center">
                   <ArrowRight className="h-3 w-3 mr-1" />
                   Soporte Técnico
